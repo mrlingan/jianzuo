@@ -1,0 +1,52 @@
+import AppKit
+
+let output = CommandLine.arguments[1]
+let size = NSSize(width: 1024, height: 1024)
+let image = NSImage(size: size)
+image.lockFocus()
+NSColor(calibratedRed: 0.95, green: 0.92, blue: 0.86, alpha: 1).setFill()
+NSBezierPath(rect: NSRect(origin: .zero, size: size)).fill()
+let shadow = NSShadow()
+shadow.shadowColor = NSColor.black.withAlphaComponent(0.12)
+shadow.shadowBlurRadius = 38
+shadow.shadowOffset = NSSize(width: 0, height: -16)
+NSGraphicsContext.saveGraphicsState()
+shadow.set()
+NSColor(calibratedRed: 0.995, green: 0.985, blue: 0.955, alpha: 1).setFill()
+NSBezierPath(roundedRect: NSRect(x: 240, y: 150, width: 544, height: 724), xRadius: 38, yRadius: 38).fill()
+NSGraphicsContext.restoreGraphicsState()
+NSColor(calibratedRed: 0.74, green: 0.72, blue: 0.65, alpha: 0.35).setStroke()
+for y in [350.0, 430.0, 510.0, 590.0] {
+    let line = NSBezierPath()
+    line.lineWidth = 12
+    line.lineCapStyle = .round
+    line.move(to: NSPoint(x: 325, y: y))
+    line.line(to: NSPoint(x: 652, y: y))
+    line.stroke()
+}
+NSGraphicsContext.saveGraphicsState()
+let transform = AffineTransform(translationByX: 600, byY: 540)
+(transform as NSAffineTransform).concat()
+let rotate = NSAffineTransform()
+rotate.rotate(byDegrees: -35)
+rotate.concat()
+NSColor(calibratedRed: 0.69, green: 0.36, blue: 0.24, alpha: 1).setFill()
+NSBezierPath(roundedRect: NSRect(x: -43, y: -160, width: 86, height: 420), xRadius: 20, yRadius: 20).fill()
+NSColor(calibratedRed: 0.89, green: 0.73, blue: 0.50, alpha: 1).setFill()
+let nib = NSBezierPath()
+nib.move(to: NSPoint(x: -43, y: -147))
+nib.line(to: NSPoint(x: 43, y: -147))
+nib.line(to: NSPoint(x: 0, y: -245))
+nib.close()
+nib.fill()
+NSColor(calibratedRed: 0.27, green: 0.27, blue: 0.24, alpha: 1).setFill()
+let tip = NSBezierPath()
+tip.move(to: NSPoint(x: -12, y: -216))
+tip.line(to: NSPoint(x: 12, y: -216))
+tip.line(to: NSPoint(x: 0, y: -245))
+tip.close()
+tip.fill()
+NSGraphicsContext.restoreGraphicsState()
+image.unlockFocus()
+let rep = NSBitmapImageRep(data: image.tiffRepresentation!)!
+try rep.representation(using: .png, properties: [:])!.write(to: URL(fileURLWithPath: output))
