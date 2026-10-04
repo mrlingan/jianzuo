@@ -63,4 +63,5 @@ ditto -c -k --sequesterRsrc --keepParent "$simulator_app" \
         "Jianzuo-$release_version-macOS-universal.zip" \
         "Jianzuo-$release_version-iOS-Simulator.zip" > SHA256SUMS.txt
 )
+bash "$project_root/Scripts/package_ipa.sh" "$release_version" "${2:-}"
 echo "Release packages: $release_dir"

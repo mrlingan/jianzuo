@@ -16,7 +16,7 @@ Jianzuo — a quiet, native SwiftUI writing app for macOS, iPhone, and iPad.
 
 前往 [GitHub Releases](https://github.com/mrlingan/jianzuo/releases) 下载 Mac DMG 或 ZIP。Mac 包包含 Apple Silicon 和 Intel 两种架构。
 
-公开发行的 Mac 包使用 ad-hoc 签名，尚未进行 Apple 公证。iOS 模拟器包仅供开发者使用，不能安装到 iPhone / iPad 真机；真机运行请按上方 Xcode 步骤配置自己的开发团队。
+公开发行的 Mac 包使用 ad-hoc 签名，尚未进行 Apple 公证。iOS 模拟器包仅供开发者使用；另提供源码直接构建的未加密、未签名真机 IPA，安装前需要自行签名。真机运行也可以按上方 Xcode 步骤配置自己的开发团队。
 
 详细发行说明见 [v1.0.0](Docs/Releases/v1.0.0.md)。
 
@@ -54,7 +54,7 @@ xcodebuild -project Jianzuo.xcodeproj -scheme Jianzuo \
 
 `Scripts/create_project.py` 可重新生成 Xcode 工程与颜色资源；`Scripts/make_icon.swift` 是应用图标的原生绘图源代码。主要源代码位于 `Jianzuo/Models` 和 `Jianzuo/Views`。
 
-运行 `bash Scripts/package_release.sh 1.0.0` 可构建并打包 Mac DMG / ZIP、iOS 模拟器 ZIP 以及 SHA-256 校验文件，输出到 `Build/Releases/v1.0.0`。
+运行 `bash Scripts/package_release.sh 1.0.0` 可构建并打包 Mac DMG / ZIP、iOS 模拟器 ZIP、未签名真机 IPA 以及 SHA-256 校验文件，输出到 `Build/Releases/v1.0.0`。仅构建真机 IPA 时，运行 `bash Scripts/package_ipa.sh 1.0.0`。
 
 ## 参与和许可
 
