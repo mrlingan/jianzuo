@@ -7,6 +7,14 @@ import AppKit
 @MainActor
 final class LibraryStore: ObservableObject {
     @Published private(set) var documents: [WritingDocument] = []
+    @Published private(set) var notebooks = Notebook.allCases
+    @Published private(set) var dailyWords: [String: Int] = [:]
+    @Published var scratch = "" { didSet { if scratch != oldValue { scheduleSave() } } }
+    @Published var tagFilter = ""
+    @Published var secondarySelection: UUID?
+    @Published var showBackup = false
+    @Published var importCandidates: [ImportCandidate] = []
+    @Published var showImportPreview = false
     @Published var selection: UUID?
     @Published var filter: LibraryFilter = .all
     @Published var search = ""
@@ -16,17 +24,30 @@ final class LibraryStore: ObservableObject {
     @Published var showPreview = false
     @Published var showImporter = false
     @Published var showExporter = false
+    @Published private(set) var exportingDocument: WritingDocument?
     @Published var preferredCompactColumn: NavigationSplitViewColumn = .content
     private var pendingSave: Task<Void, Never>?
     private let storageURL: URL
     private var canSave = true
+    private var lastBackupAt = Date.distantPast
+    private var lastSavedSnapshot: LibrarySnapshot?
 
     init(storageURL: URL? = nil, seed: Bool = true) {
         let support = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-        self.storageURL = storageURL ?? support.appendingPathComponent("Jianzuo/library.json")
+        #if DEBUG
+        let previewURL = ProcessInfo.processInfo.environment["JIANZUO_LIBRARY_PATH"].map { URL(fileURLWithPath: $0) }
+        #else
+        let previewURL: URL? = nil
+        #endif
+        self.storageURL = storageURL ?? previewURL ?? support.appendingPathComponent("Jianzuo/library.json")
         do {
             let exists = FileManager.default.fileExists(atPath: self.storageURL.path)
-            documents = try LibraryPersistence.read(from: self.storageURL)
+            let snapshot = try LibraryPersistence.readSnapshot(from: self.storageURL)
+            documents = snapshot.documents
+            notebooks = snapshot.notebooks
+            dailyWords = snapshot.dailyWords
+            scratch = snapshot.scratch
+            lastSavedSnapshot = exists ? snapshot : nil
             if !exists && seed {
                 documents = Self.welcomeDocuments
                 saveNow()
@@ -40,6 +61,9 @@ final class LibraryStore: ObservableObject {
     }
 
     var currentDocument: WritingDocument? { documents.first { $0.id == selection } }
+    var isWritable: Bool { canSave }
+    var snapshot: LibrarySnapshot { LibrarySnapshot(documents: documents, notebooks: notebooks, dailyWords: dailyWords, scratch: scratch) }
+    var allTags: [String] { Array(Set(documents.filter { $0.deletedAt == nil }.flatMap(\.tags))).sorted() }
     var visibleDocuments: [WritingDocument] {
         documents.filter { document in
             let matchesFilter: Bool
@@ -50,7 +74,7 @@ final class LibraryStore: ObservableObject {
             case .trash: matchesFilter = document.deletedAt != nil
             }
             let query = search.trimmingCharacters(in: .whitespacesAndNewlines)
-            return matchesFilter && (query.isEmpty || document.title.localizedStandardContains(query) || document.body.localizedStandardContains(query))
+            return matchesFilter && (tagFilter.isEmpty || document.tags.contains(tagFilter)) && (query.isEmpty || document.title.localizedStandardContains(query) || document.body.localizedStandardContains(query) || document.tags.contains(where: { $0.localizedStandardContains(query) }))
         }.sorted { $0.updatedAt > $1.updatedAt }
     }
 
@@ -68,20 +92,24 @@ final class LibraryStore: ObservableObject {
 
     func selectFilter(_ newFilter: LibraryFilter) {
         filter = newFilter
+        tagFilter = ""
         selection = visibleDocuments.first?.id
         preferredCompactColumn = .content
     }
 
     @discardableResult
     func createDocument(title: String = "", body: String = "", notebook: Notebook? = nil) -> UUID {
+        guard canSave else { errorMessage = "当前文稿库读取失败，原文件已保留。请先修复原库，再创建或导入文稿。"; return UUID() }
         let destination: Notebook
         if let notebook { destination = notebook }
         else if case .notebook(let current) = filter { destination = current }
-        else { destination = .drafts }
+        else { destination = notebooks.first ?? .drafts }
+        guard notebooks.contains(destination) else { return UUID() }
         let document = WritingDocument(title: title, body: body, notebook: destination)
         documents.insert(document, at: 0)
         if filter == .trash || filter == .favorites { filter = .all }
         search = ""
+        tagFilter = ""
         selection = document.id
         preferredCompactColumn = .detail
         showPreview = false
@@ -89,8 +117,17 @@ final class LibraryStore: ObservableObject {
         return document.id
     }
 
-    func update(_ id: UUID, title: String? = nil, body: String? = nil, notebook: Notebook? = nil) {
-        guard let index = documents.firstIndex(where: { $0.id == id }) else { return }
+    func update(_ id: UUID, title: String? = nil, body: String? = nil, notebook: Notebook? = nil, countWriting: Bool = true) {
+        guard let index = documents.firstIndex(where: { $0.id == id }), documents[index].deletedAt == nil else { return }
+        if documents[index].isReadOnly && (title != nil || body != nil) { return }
+        if let notebook, !notebooks.contains(notebook) { return }
+        let contentChanged = (title != nil && title != documents[index].title) || (body != nil && body != documents[index].body)
+        guard contentChanged || (notebook != nil && notebook != documents[index].notebook) else { return }
+        if contentChanged { documents[index].checkpoint() }
+        if countWriting, let body {
+            let added = max(0, WritingMetrics.count(body) - documents[index].wordCount)
+            if added > 0 { dailyWords[WritingDay.key()] = min(1_000_000_000, (dailyWords[WritingDay.key()] ?? 0) + min(added, 1_000_000_000)) }
+        }
         if let title { documents[index].title = title }
         if let body { documents[index].body = body }
         if let notebook { documents[index].notebook = notebook }
@@ -108,6 +145,7 @@ final class LibraryStore: ObservableObject {
         guard let index = documents.firstIndex(where: { $0.id == id }) else { return }
         documents[index].deletedAt = Date()
         documents[index].updatedAt = Date()
+        if secondarySelection == id { secondarySelection = nil }
         selection = visibleDocuments.first?.id
         scheduleSave()
     }
@@ -118,6 +156,7 @@ final class LibraryStore: ObservableObject {
         documents[index].updatedAt = Date()
         filter = .all
         search = ""
+        tagFilter = ""
         selection = id
         preferredCompactColumn = .detail
         scheduleSave()
@@ -131,7 +170,8 @@ final class LibraryStore: ObservableObject {
     }
 
     func duplicate(_ document: WritingDocument) {
-        createDocument(title: document.displayTitle + " · 副本", body: document.body, notebook: document.notebook)
+        let id = createDocument(title: document.displayTitle + " · 副本", body: document.body, notebook: document.notebook)
+        if let index = documents.firstIndex(where: { $0.id == id }) { documents[index].tags = document.tags }
         filter = .notebook(document.notebook)
     }
 
@@ -150,7 +190,18 @@ final class LibraryStore: ObservableObject {
         pendingSave?.cancel()
         guard canSave else { return }
         do {
-            try LibraryPersistence.write(documents, to: storageURL)
+            if let previous = lastSavedSnapshot, previous.documents != documents || previous.notebooks != notebooks || previous.scratch != scratch || previous.dailyWords != dailyWords {
+                if Date().timeIntervalSince(lastBackupAt) >= 60 {
+                    let folder = storageURL.deletingLastPathComponent().appendingPathComponent("Backups")
+                    try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+                    let url = folder.appendingPathComponent("\(Int(Date().timeIntervalSince1970 * 1000))-\(UUID().uuidString.prefix(6)).jzb")
+                    try BackupCodec.encode(previous).write(to: url, options: .atomic)
+                    lastBackupAt = Date()
+                    for old in automaticBackups.dropFirst(10) { try FileManager.default.removeItem(at: old) }
+                }
+            }
+            try LibraryPersistence.write(snapshot, to: storageURL)
+            lastSavedSnapshot = snapshot
             saveState = "已保存到本机"
         } catch {
             saveState = "保存失败"
@@ -172,20 +223,117 @@ final class LibraryStore: ObservableObject {
     }
 
     func importURLs(_ urls: [URL]) {
+        guard canSave else { errorMessage = "文稿库读取失败，暂时无法导入。原文件已保留。"; return }
+        var candidates: [ImportCandidate] = []
+        var failures: [String] = []
         for url in urls {
             let access = url.startAccessingSecurityScopedResource()
             defer { if access { url.stopAccessingSecurityScopedResource() } }
             do {
                 let body = try String(contentsOf: url, encoding: .utf8)
-                createDocument(title: url.deletingPathExtension().lastPathComponent, body: body)
+                candidates.append(ImportCandidate(title: url.deletingPathExtension().lastPathComponent, body: body, filename: url.lastPathComponent))
             } catch {
-                errorMessage = "无法导入 \(url.lastPathComponent)，请使用 UTF-8 编码的文本。\n\(error.localizedDescription)"
+                failures.append(url.lastPathComponent)
             }
         }
+        importCandidates = candidates.sorted { $0.filename.localizedStandardCompare($1.filename) == .orderedAscending }
+        showImportPreview = !candidates.isEmpty
+        if !failures.isEmpty { errorMessage = "以下文件无法读取，请使用 UTF-8 文本：\n" + failures.joined(separator: "\n") }
+    }
+
+    func commitImport(to notebook: Notebook) {
+        guard notebooks.contains(notebook) else { return }
+        let selected = importCandidates.filter(\.included)
+        guard !selected.isEmpty else { return }
+        for candidate in selected.reversed() { createDocument(title: candidate.title, body: candidate.body, notebook: notebook) }
+        filter = .notebook(notebook)
+        importCandidates = []
+        showImportPreview = false
+        saveNow()
+    }
+
+    func addNotebook(_ name: String) throws {
+        let notebook = Notebook(rawValue: name.trimmingCharacters(in: .whitespacesAndNewlines))
+        guard LibrarySnapshot.validNotebookName(notebook.rawValue), !notebooks.contains(notebook) else { throw WritingToolError.invalid("笔记本名称须为 1–40 个字符，且不能重复或使用导航名称。") }
+        notebooks.append(notebook)
+        scheduleSave()
+    }
+
+    func renameNotebook(_ notebook: Notebook, to name: String) throws {
+        let value = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard value != notebook.rawValue else { return }
+        guard let index = notebooks.firstIndex(of: notebook) else { return }
+        let replacement = Notebook(rawValue: value)
+        guard LibrarySnapshot.validNotebookName(value), !notebooks.contains(replacement) else { throw WritingToolError.invalid("笔记本名称为空、重复或过长。") }
+        notebooks[index] = replacement
+        for index in documents.indices where documents[index].notebook == notebook { documents[index].notebook = replacement }
+        if filter == .notebook(notebook) { filter = .notebook(replacement) }
+        scheduleSave()
+    }
+
+    func deleteNotebook(_ notebook: Notebook) throws {
+        guard notebooks.count > 1, !documents.contains(where: { $0.notebook == notebook }) else { throw WritingToolError.invalid("请先移出所有文稿（含废纸篓），并保留至少一个笔记本。") }
+        notebooks.removeAll { $0 == notebook }
+        if filter == .notebook(notebook) { selectFilter(.all) }
+        scheduleSave()
+    }
+
+    func setTags(_ id: UUID, source: String) {
+        guard let index = documents.firstIndex(where: { $0.id == id && $0.deletedAt == nil }) else { return }
+        documents[index].tags = WritingTools.tags(source)
+        scheduleSave()
+    }
+
+    func toggleReadOnly(_ id: UUID) {
+        guard let index = documents.firstIndex(where: { $0.id == id && $0.deletedAt == nil }) else { return }
+        documents[index].isReadOnly.toggle()
+        scheduleSave()
+    }
+
+    func checkpoint(_ id: UUID) {
+        guard let index = documents.firstIndex(where: { $0.id == id }) else { return }
+        documents[index].checkpoint(force: true)
+        scheduleSave()
+    }
+
+    func restoreRevision(_ revision: DocumentRevision, to id: UUID, asCopy: Bool = false) {
+        guard let index = documents.firstIndex(where: { $0.id == id }) else { return }
+        if asCopy {
+            createDocument(title: revision.title + " · 恢复", body: revision.body, notebook: documents[index].notebook)
+        } else {
+            guard documents[index].deletedAt == nil, !documents[index].isReadOnly else { return }
+            checkpoint(id)
+            update(id, title: revision.title, body: revision.body, countWriting: false)
+        }
+        saveNow()
+    }
+
+    var automaticBackups: [URL] {
+        let folder = storageURL.deletingLastPathComponent().appendingPathComponent("Backups")
+        return ((try? FileManager.default.contentsOfDirectory(at: folder, includingPropertiesForKeys: nil)) ?? []).filter { $0.pathExtension == "jzb" }.sorted { $0.lastPathComponent > $1.lastPathComponent }
+    }
+
+    func mergeBackup(_ incoming: LibrarySnapshot, includeStatistics: Bool) throws {
+        guard canSave else { throw WritingToolError.invalid("当前文稿库读取失败，请先保留并修复原库，避免覆盖。") }
+        let incoming = try incoming.validated()
+        for notebook in incoming.notebooks where !notebooks.contains(notebook) { notebooks.append(notebook) }
+        var copies = incoming.documents
+        for index in copies.indices { copies[index].id = UUID() }
+        documents.insert(contentsOf: copies, at: 0)
+        if !incoming.scratch.isEmpty { scratch += (scratch.isEmpty ? "" : "\n\n") + incoming.scratch }
+        if includeStatistics { for (day, count) in incoming.dailyWords { dailyWords[day] = max(dailyWords[day] ?? 0, count) } }
+        filter = .all; search = ""; tagFilter = ""
+        selection = copies.first(where: { $0.deletedAt == nil })?.id ?? selection
+        saveNow()
     }
 
     func exportCurrentDocument() {
         guard let document = currentDocument else { return }
+        export(document)
+    }
+
+    func export(_ document: WritingDocument) {
+        exportingDocument = document
         #if os(macOS)
         let panel = NSSavePanel()
         panel.allowedContentTypes = [UTType(filenameExtension: "md") ?? .plainText, .plainText]

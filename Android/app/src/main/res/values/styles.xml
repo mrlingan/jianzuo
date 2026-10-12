@@ -1,0 +1,40 @@
+<resources>
+    <style name="Theme.Jianzuo" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:colorAccent">#B05C3D</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowBackground">#FAF7F1</item>
+    </style>
+    <style name="Theme.Jianzuo.Dark" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:colorAccent">#D18561</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowBackground">#1D1C1A</item>
+    </style>
+    <integer name="pane_count">1</integer>
+    <style name="ThemeOverlayForestLight" parent="">
+        <item name="android:colorAccent">#3F7450</item><item name="android:windowBackground">#F1F6EE</item>
+    </style>
+    <style name="ThemeOverlayForestDark" parent="">
+        <item name="android:colorAccent">#8DB99A</item><item name="android:windowBackground">#19221D</item>
+    </style>
+    <style name="ThemeOverlayOceanLight" parent="">
+        <item name="android:colorAccent">#3D6B91</item><item name="android:windowBackground">#F0F5FA</item>
+    </style>
+    <style name="ThemeOverlayOceanDark" parent="">
+        <item name="android:colorAccent">#8AB4D1</item><item name="android:windowBackground">#19222B</item>
+    </style>
+    <style name="ThemeOverlayRoseLight" parent="">
+        <item name="android:colorAccent">#97516F</item><item name="android:windowBackground">#FCF2F4</item>
+    </style>
+    <style name="ThemeOverlayRoseDark" parent="">
+        <item name="android:colorAccent">#D7A0B7</item><item name="android:windowBackground">#291E24</item>
+    </style>
+    <style name="ThemeOverlayMonoLight" parent="">
+        <item name="android:colorAccent">#444444</item><item name="android:windowBackground">#FFFFFF</item>
+    </style>
+    <style name="ThemeOverlayMonoDark" parent="">
+        <item name="android:colorAccent">#D0D0D0</item><item name="android:windowBackground">#191919</item>
+    </style>
+</resources>

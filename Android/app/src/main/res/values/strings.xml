@@ -1,0 +1,693 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="color_theme">"Color theme"</string>
+    <string name="paper_style">"Paper style"</string>
+    <string name="theme_preview">"Theme preview"</string>
+    <string name="theme_sample">"Give words some space.\nWrite this moment, keep a trace of time.\nThe story begins here."</string>
+    <string name="paper_note">"Changes affect this preview until you tap Done. Rules follow the actual line spacing in editing and plain-text reading; Markdown previews have no rules. Theme and paper stay on this device and do not change export colors."</string>
+    <string-array name="color_themes">
+        <item>"Jianzuo"</item>
+        <item>"Forest"</item>
+        <item>"Ocean mist"</item>
+        <item>"Rose"</item>
+        <item>"Monochrome"</item>
+    </string-array>
+    <string-array name="paper_styles">
+        <item>"Plain"</item>
+        <item>"Ruled"</item>
+    </string-array>
+    <string name="about_app">"Jianzuo %1$s\nA quiet native writing space.\nDocuments stay on this device; use import and export to exchange files.\nSupports Android phones, tablets and split screen."</string>
+    <string name="print_markdown">"Markdown layout"</string>
+    <string name="print_source">"Source layout (keep markup)"</string>
+    <string name="folder_scan_progress">"Entries checked: %1$d\nDocuments read: %2$d · %3$.1f MB\n\nAfter scanning, preview and select documents. Nothing is saved until you confirm."</string>
+    <string name="recovery_found">"Versions found: %1$d"</string>
+    <string name="recovery_summary">"%1$s · Automatic backups checked: %2$d%3$s%4$s"</string>
+    <string name="recovery_skipped">"\nSkipped snapshots: %1$d (unreadable or over size limits)."</string>
+    <string name="recovery_failed">"Search failed: %1$s"</string>
+    <string name="recovery_result">"%1$s\n%2$s · %3$s\n%4$s\n%5$s"</string>
+    <string name="app_name">"Jianzuo"</string>
+    <string name="document_count">"Documents: %1$d"</string>
+    <string name="setting_value">"%1$s %2$d"</string>
+    <string name="find_navigation">"Current document · Match %1$d / %2$d"</string>
+    <string name="find_totals">"Documents: %1$d · Matches: %2$d"</string>
+    <string name="import_item">"%1$d. %2$s\nWords: %3$d · %4$s"</string>
+    <string name="import_order">"Import order (1–%1$d)"</string>
+    <string name="directory_summary">"%1$sWords in scope: %2$d\n%3$s · %4$s"</string>
+    <string name="directory_book_total">"Book word count: %1$d · "</string>
+    <string name="chapter_numbering_hint">"{n} inserts the number and {title} keeps the original title. Number chapters in book order, skipping read-only and trashed documents. Preview before applying."</string>
+    <string name="chapter_numbering_pattern">"Chapter {n} {title}"</string>
+    <string name="primary_draft">"Primary"</string>
+    <string name="secondary_draft">"Reference"</string>
+    <string name="ui_loading_86b6d0" formatted="false">"Loading…"</string>
+    <string name="ui_saved_on_this_device_e78374" formatted="false">"Saved on this device"</string>
+    <string name="ui_load_failed_original_file_preserved_08aee1" formatted="false">"Load failed · Original file preserved"</string>
+    <string name="ui_cannot_load_the_library_874473" formatted="false">"Cannot load the library"</string>
+    <string name="ui_the_original_file_has_been_preserved_without_956c39" formatted="false">"The original file has been preserved without overwriting. Keep the app data for recovery.\n"</string>
+    <string name="ui_the_notebook_for_this_shortcut_no_longer_exis_00fa78" formatted="false">"The notebook for this shortcut no longer exists"</string>
+    <string name="ui_jianzuo_documents_locked_5642bd" formatted="false">"Jianzuo · Documents locked"</string>
+    <string name="ui_unlock_with_device_credentials_c16ac3" formatted="false">"Unlock with device credentials"</string>
+    <string name="ui_jianzuo_opening_your_writing_space_264feb" formatted="false">"Jianzuo\nOpening your writing space…"</string>
+    <string name="ui_give_words_some_space_8e4172" formatted="false">"Give words some space"</string>
+    <string name="ui_start_a_new_page_2e9085" formatted="false">"＋  Start a new page"</string>
+    <string name="ui_import_markdown_txt_b369a4" formatted="false">"Import Markdown / TXT"</string>
+    <string name="ui_writing_settings_2020b1" formatted="false">"Writing settings"</string>
+    <string name="ui_new_document_748571" formatted="false">"New document"</string>
+    <string name="ui_document_list_menu_bf67bc" formatted="false">"Document list menu"</string>
+    <string name="ui_search_titles_and_text_e7d934" formatted="false">"Search titles and text"</string>
+    <string name="ui_search_documents_18c542" formatted="false">"Search documents"</string>
+    <string name="ui_contents_and_filters_45b865" formatted="false">"Contents and filters"</string>
+    <string name="ui_chapter_list_scroll_area_6ebbb3" formatted="false">"Chapter list scroll area"</string>
+    <string name="ui_all_volumes_5309cd" formatted="false">"All volumes"</string>
+    <string name="ui_no_volume_212370" formatted="false">"No volume"</string>
+    <string name="ui_all_tags_582523" formatted="false">"All tags"</string>
+    <string name="ui_trash_is_empty_d820f4" formatted="false">"Trash is empty"</string>
+    <string name="ui_no_documents_yet_start_a_new_page_dd03d2" formatted="false">"No documents yet\nStart a new page."</string>
+    <string name="ui_no_matching_documents_ecd745" formatted="false">"No matching documents"</string>
+    <string name="ui_drag_chapter_00f239" formatted="false">"Drag chapter: "</string>
+    <string name="ui_long_press_to_drag_before_a_chapter_or_into_a_d3b915" formatted="false">"Long press to drag before a chapter or into a volume"</string>
+    <string name="ui_jianzuo_chapter_16f6af" formatted="false">"Jianzuo chapter"</string>
+    <string name="ui_waiting_for_your_first_sentence_bd1d17" formatted="false">"Waiting for your first sentence…"</string>
+    <string name="ui_read_only_74139b" formatted="false">" · Read only"</string>
+    <string name="ui_words_8ee179" formatted="false">" words · "</string>
+    <string name="ui_words_457271" formatted="false">" words"</string>
+    <string name="ui_cannot_move_the_chapter_93c594" formatted="false">"Cannot move the chapter"</string>
+    <string name="ui_documents_76af09" formatted="false">" documents · "</string>
+    <string name="ui_volume_contents_0992dd" formatted="false">"Volume contents: "</string>
+    <string name="ui_choose_a_notebook_716fea" formatted="false">"Choose a notebook"</string>
+    <string name="ui_cancel_2cd0f3" formatted="false">"Cancel"</string>
+    <string name="ui_show_collapsible_contents_by_volume_c2c14d" formatted="false">"Show collapsible contents by volume"</string>
+    <string name="ui_volume_scope_ab16d0" formatted="false">"Volume scope"</string>
+    <string name="ui_tag_exact_match_e80814" formatted="false">"Tag (exact match)"</string>
+    <string name="ui_long_press_a_volume_title_to_manage_it_long_p_9e7523" formatted="false">"Long press a volume title to manage it; long press ≡ beside a chapter to drag."</string>
+    <string name="ui_clear_filters_657d9c" formatted="false">"Clear filters"</string>
+    <string name="ui_apply_63c73c" formatted="false">"Apply"</string>
+    <string name="ui_return_to_writing_layout_c96b4b" formatted="false">"Return to writing layout"</string>
+    <string name="ui_back_to_document_list_0b22a7" formatted="false">"Back to document list"</string>
+    <string name="ui_writing_space_4f77b5" formatted="false">"Writing space"</string>
+    <string name="ui_edit_text_2746d2" formatted="false">"Edit text"</string>
+    <string name="ui_markdown_preview_e1abc2" formatted="false">"Markdown preview"</string>
+    <string name="ui_remove_favorite_dca608" formatted="false">"Remove favorite"</string>
+    <string name="ui_add_to_favorites_ed91f2" formatted="false">"Add to favorites"</string>
+    <string name="ui_leave_focus_mode_3f6477" formatted="false">"Leave focus mode"</string>
+    <string name="ui_focus_on_writing_b35534" formatted="false">"Focus on writing"</string>
+    <string name="ui_document_menu_ccbbfa" formatted="false">"Document menu"</string>
+    <string name="ui_choose_a_document_or_start_a_new_page_143e33" formatted="false">"Choose a document or start a new page."</string>
+    <string name="ui_library_could_not_be_loaded_original_file_pre_15a4fe" formatted="false">"Library could not be loaded. Original file preserved."</string>
+    <string name="ui_start_a_new_page_f8056f" formatted="false">"Start a new page"</string>
+    <string name="ui_document_is_in_trash_6658c8" formatted="false">"Document is in Trash"</string>
+    <string name="ui_restore_e0534b" formatted="false">"Restore"</string>
+    <string name="ui_untitled_document_5c7cd4" formatted="false">"Untitled document"</string>
+    <string name="ui_document_title_5c4f95" formatted="false">"Document title"</string>
+    <string name="ui_write_your_first_sentence_here_8ec108" formatted="false">"Write your first sentence here…"</string>
+    <string name="ui_document_text_b83436" formatted="false">"Document text"</string>
+    <string name="ui_document_text_read_only_c7a0d1" formatted="false">"Document text (read only)"</string>
+    <string name="ui_close_dual_editor_da03dd" formatted="false">"Close dual editor"</string>
+    <string name="ui_dual_editor_ca94ac" formatted="false">"Dual editor"</string>
+    <string name="ui_linked_on_8155d0" formatted="false">"Linked: on"</string>
+    <string name="ui_linked_off_684168" formatted="false">"Linked: off"</string>
+    <string name="ui_linked_scrolling_d244e4" formatted="false">"Linked scrolling"</string>
+    <string name="ui_dual_editor_proportions_475cde" formatted="false">"Dual editor proportions"</string>
+    <string name="ui_primary_pane_width_486dba" formatted="false">"Primary pane width"</string>
+    <string name="ui_choose_reference_document_d4b70c" formatted="false">"Choose reference document"</string>
+    <string name="ui_choose_primary_document_c8ed1a" formatted="false">"Choose primary document"</string>
+    <string name="ui_no_text_yet_switch_to_editing_to_start_writin_1b0c6e" formatted="false">"No text yet. Switch to editing to start writing."</string>
+    <string name="ui_library_is_not_editable_a39077" formatted="false">"Library is not editable"</string>
+    <string name="ui_loading_failed_original_file_preserved_keep_t_9cc212" formatted="false">"Loading failed. Original file preserved. Keep the app data for recovery."</string>
+    <string name="ui_import_zip_documents_667b48" formatted="false">"Import ZIP documents"</string>
+    <string name="ui_import_folder_9592c9" formatted="false">"Import folder"</string>
+    <string name="ui_new_from_template_79fd4b" formatted="false">"New from template"</string>
+    <string name="ui_manage_notebooks_ef1831" formatted="false">"Manage notebooks"</string>
+    <string name="ui_manage_volumes_3349d9" formatted="false">"Manage volumes"</string>
+    <string name="ui_number_chapters_96ea06" formatted="false">"Number chapters"</string>
+    <string name="ui_sort_order_604aad" formatted="false">"Sort order"</string>
+    <string name="ui_export_as_a_book_2a018a" formatted="false">"Export as a book"</string>
+    <string name="ui_export_zip_archive_b87d63" formatted="false">"Export ZIP archive"</string>
+    <string name="ui_find_and_replace_across_library_f69a0d" formatted="false">"Find and replace across library"</string>
+    <string name="ui_backup_and_restore_6beda4" formatted="false">"Backup and restore"</string>
+    <string name="ui_scratchpad_c92820" formatted="false">"Scratchpad"</string>
+    <string name="ui_daily_statistics_9f3465" formatted="false">"Daily statistics"</string>
+    <string name="ui_restore_document_dbf164" formatted="false">"Restore document"</string>
+    <string name="ui_delete_permanently_7aa6d0" formatted="false">"Delete permanently"</string>
+    <string name="ui_create_a_copy_f6825f" formatted="false">"Create a copy"</string>
+    <string name="ui_move_to_notebook_6db666" formatted="false">"Move to notebook"</string>
+    <string name="ui_move_to_trash_fa5e19" formatted="false">"Move to Trash"</string>
+    <string name="ui_export_markdown_ac8b02" formatted="false">"Export Markdown"</string>
+    <string name="ui_export_txt_bc911e" formatted="false">"Export TXT"</string>
+    <string name="ui_document_statistics_92f22f" formatted="false">"Document statistics"</string>
+    <string name="ui_writing_tools_e42610" formatted="false">"Writing tools"</string>
+    <string name="ui_find_and_replace_d688f8" formatted="false">"Find and replace"</string>
+    <string name="ui_revision_history_6fd295" formatted="false">"Revision history"</string>
+    <string name="ui_document_outline_3e55aa" formatted="false">"Document outline"</string>
+    <string name="ui_format_text_d8d425" formatted="false">"Format text"</string>
+    <string name="ui_quick_undo_48333c" formatted="false">"Quick undo"</string>
+    <string name="ui_quick_redo_3cc02e" formatted="false">"Quick redo"</string>
+    <string name="ui_shortcut_toolbar_3d54ce" formatted="false">"Shortcut toolbar"</string>
+    <string name="ui_move_paragraph_up_8b62a6" formatted="false">"Move paragraph up"</string>
+    <string name="ui_move_paragraph_down_e50b27" formatted="false">"Move paragraph down"</string>
+    <string name="ui_volume_and_tags_937eea" formatted="false">"Volume and tags"</string>
+    <string name="ui_make_editable_d959d8" formatted="false">"Make editable"</string>
+    <string name="ui_make_read_only_70be9c" formatted="false">"Make read only"</string>
+    <string name="ui_second_editor_d2a1c9" formatted="false">"Second editor"</string>
+    <string name="ui_check_keywords_7e1c14" formatted="false">"Check keywords"</string>
+    <string name="ui_read_text_aloud_2aa1cd" formatted="false">"Read text aloud"</string>
+    <string name="ui_stop_reading_6113d2" formatted="false">"Stop reading"</string>
+    <string name="ui_more_exports_and_sharing_63141b" formatted="false">"More exports and sharing"</string>
+    <string name="ui_export_pdf_e42c87" formatted="false">"Export PDF"</string>
+    <string name="ui_export_png_image_1c7575" formatted="false">"Export PNG image"</string>
+    <string name="ui_export_html_aa02b7" formatted="false">"Export HTML"</string>
+    <string name="ui_export_docx_75a725" formatted="false">"Export DOCX"</string>
+    <string name="ui_export_epub_f54571" formatted="false">"Export EPUB"</string>
+    <string name="ui_copy_rich_text_81c382" formatted="false">"Copy rich text"</string>
+    <string name="ui_copy_title_and_text_571351" formatted="false">"Copy title and text"</string>
+    <string name="ui_share_with_another_app_13a1c6" formatted="false">"Share with another app"</string>
+    <string name="ui_reorder_chapters_c41faa" formatted="false">"Reorder chapters"</string>
+    <string name="ui_move_chapter_up_6019b4" formatted="false">"Move chapter up"</string>
+    <string name="ui_move_chapter_down_555d7d" formatted="false">"Move chapter down"</string>
+    <string name="ui_new_chapter_before_this_832a24" formatted="false">"New chapter before this"</string>
+    <string name="ui_new_chapter_after_this_8b72a6" formatted="false">"New chapter after this"</string>
+    <string name="ui_move_to_notebook_5bc9be" formatted="false">"Move to notebook"</string>
+    <string name="ui_delete_this_document_permanently_8a6952" formatted="false">"Delete this document permanently?"</string>
+    <string name="ui_rich_text_copied_a77ca3" formatted="false">"Rich text copied"</string>
+    <string name="ui_copied_8f6f8d" formatted="false">"Copied"</string>
+    <string name="ui_share_document_16cefe" formatted="false">"Share document"</string>
+    <string name="ui_cannot_create_the_chapter_ff43a5" formatted="false">"Cannot create the chapter"</string>
+    <string name="ui_saving_6bdb44" formatted="false">"Saving…"</string>
+    <string name="ui_selected_7b777f" formatted="false">"Selected "</string>
+    <string name="ui_total_552f34" formatted="false">" / Total "</string>
+    <string name="ui_words_b32925" formatted="false">"\nWords "</string>
+    <string name="ui_goal_c7a5a4" formatted="false">" / Goal "</string>
+    <string name="ui_status_bar_counting_mode_b61e57" formatted="false">"Status bar counting mode"</string>
+    <string name="ui_counts_and_counting_mode_bee70c" formatted="false">"Counts and counting mode"</string>
+    <string name="ui_counts_caab0a" formatted="false">"Counts: "</string>
+    <string name="ui_tap_to_change_counting_mode_8b51a1" formatted="false">"; tap to change counting mode"</string>
+    <string name="ui_save_failed_6309a3" formatted="false">"Save failed"</string>
+    <string name="ui_save_failed_export_a_backup_f2790c" formatted="false">"Save failed · Export a backup"</string>
+    <string name="ui_document_could_not_be_saved_a29e01" formatted="false">"Document could not be saved"</string>
+    <string name="ui_check_available_storage_and_export_the_curren_59b5c5" formatted="false">"Check available storage and export the current text to keep a copy.\n"</string>
+    <string name="ui_unlock_jianzuo_31c94d" formatted="false">"Unlock Jianzuo"</string>
+    <string name="ui_use_device_credentials_to_view_documents_d4d8e5" formatted="false">"Use device credentials to view documents"</string>
+    <string name="ui_cannot_write_the_file_bc86fe" formatted="false">"Cannot write the file"</string>
+    <string name="ui_exported_ed1940" formatted="false">"Exported"</string>
+    <string name="ui_export_failed_6e4445" formatted="false">"Export failed"</string>
+    <string name="ui_words_hold_time_write_it_down_and_keep_it_73d999" formatted="false">"Words hold time. Write it down and keep it."</string>
+    <string name="ui_text_font_34f1a6" formatted="false">"Text font"</string>
+    <string name="ui_serif_b9b686" formatted="false">"Serif"</string>
+    <string name="ui_system_font_96a2a0" formatted="false">"System font"</string>
+    <string name="ui_monospace_df5743" formatted="false">"Monospace"</string>
+    <string name="ui_custom_font_c26502" formatted="false">"Custom font"</string>
+    <string name="ui_font_size_f71561" formatted="false">"Font size"</string>
+    <string name="ui_line_spacing_40026a" formatted="false">"Line spacing"</string>
+    <string name="ui_document_goals_contents_and_daily_statistics_5d81d1" formatted="false">"Document goals, contents and daily statistics use mixed word counts. The status bar can count a text selection; tap it to change the mode."</string>
+    <string name="ui_goal_per_document_2034a2" formatted="false">"Goal per document"</string>
+    <string name="ui_no_goal_c40c04" formatted="false">"No goal"</string>
+    <string name="ui_300_words_3efa8c" formatted="false">"300 words"</string>
+    <string name="ui_800_words_c25472" formatted="false">"800 words"</string>
+    <string name="ui_1_500_words_681151" formatted="false">"1,500 words"</string>
+    <string name="ui_3_000_words_0be38e" formatted="false">"3,000 words"</string>
+    <string name="ui_appearance_86a63f" formatted="false">"Appearance"</string>
+    <string name="ui_follow_system_217cfe" formatted="false">"Follow system"</string>
+    <string name="ui_light_aa0819" formatted="false">"Light"</string>
+    <string name="ui_dark_a6b75d" formatted="false">"Dark"</string>
+    <string name="ui_import_custom_font_ttf_otf_0fd89b" formatted="false">"Import custom font (TTF / OTF)"</string>
+    <string name="ui_shortcut_toolbar_layout_and_content_74649b" formatted="false">"Shortcut toolbar layout and content"</string>
+    <string name="ui_show_shortcut_toolbar_1ea29e" formatted="false">"Show shortcut toolbar"</string>
+    <string name="ui_complete_and_delete_matching_punctuation_1f05e2" formatted="false">"Complete and delete matching punctuation"</string>
+    <string name="ui_continue_previous_indentation_on_a_new_line_579118" formatted="false">"Continue previous indentation on a new line"</string>
+    <string name="ui_delete_leading_indentation_with_one_backspace_daaf64" formatted="false">"Delete leading indentation with one backspace"</string>
+    <string name="ui_change_a_trailing_comma_to_a_period_on_a_new_940990" formatted="false">"Change a trailing comma to a period on a new line"</string>
+    <string name="ui_search_multiple_space_separated_terms_match_a_2b6aa8" formatted="false">"Search multiple space-separated terms (match all)"</string>
+    <string name="ui_typewriter_mode_highlight_the_current_paragra_f25946" formatted="false">"Typewriter mode: highlight the current paragraph"</string>
+    <string name="ui_record_writing_time_8791ae" formatted="false">"Record writing time"</string>
+    <string name="ui_timing_starts_when_you_edit_a_title_or_text_a_eaac1b" formatted="false">"Timing starts when you edit a title or text, and includes up to 60 seconds after the last edit. It pauses in the background, other windows, previews and read-only views. Both editors share one timer."</string>
+    <string name="ui_keep_screen_awake_while_writing_09a18c" formatted="false">"Keep screen awake while writing"</string>
+    <string name="ui_lock_with_device_credentials_when_leaving_2d4e00" formatted="false">"Lock with device credentials when leaving"</string>
+    <string name="ui_done_c0b3fb" formatted="false">"Done"</string>
+    <string name="ui_set_a_device_password_in_system_settings_firs_4c228d" formatted="false">"Set a device password in system settings first"</string>
+    <string name="ui_restore_the_document_or_make_it_editable_firs_1848a0" formatted="false">"Restore the document or make it editable first"</string>
+    <string name="ui_shortcut_3a7f2b" formatted="false">"Shortcut: "</string>
+    <string name="ui_enter_editing_mode_first_6be2c5" formatted="false">"Enter editing mode first"</string>
+    <string name="ui_no_edits_to_ea6786" formatted="false">"No edits to "</string>
+    <string name="ui_redo_03717b" formatted="false">"redo"</string>
+    <string name="ui_undo_926a50" formatted="false">"undo"</string>
+    <string name="ui_you_can_check_revision_history_db318a" formatted="false">". You can check revision history."</string>
+    <string name="ui_blank_document_bcda08" formatted="false">"Blank document"</string>
+    <string name="ui_daily_journal_98b36e" formatted="false">"Daily journal"</string>
+    <string name="ui_novel_chapter_9a5b9e" formatted="false">"Novel chapter"</string>
+    <string name="ui_article_outline_17088e" formatted="false">"Article outline"</string>
+    <string name="ui_to_do_list_2b2cdd" formatted="false">"To-do list"</string>
+    <string name="ui_what_happened_today_what_i_am_grateful_for_wh_a79d20" formatted="false">"\n\nWhat happened today:\n\nWhat I am grateful for:\n\nWhat I want to try tomorrow:\n"</string>
+    <string name="ui_scene_time_place_characters_text_hints_and_ne_26d136" formatted="false">"## Scene\n\nTime:\nPlace:\nCharacters:\n\n## Text\n\n\n## Hints and next chapter\n"</string>
+    <string name="ui_article_title_main_idea_opening_arguments_and_5d736d" formatted="false">"# Article title\n\n## Main idea\n\n## Opening\n\n## Arguments and examples\n\n## Ending\n"</string>
+    <string name="ui_today_s_tasks_2b60f4" formatted="false">"# Today's tasks\n\n- [ ] \n- [ ] \n- [ ] \n"</string>
+    <string name="ui_new_notebook_03cc61" formatted="false">"＋ New notebook"</string>
+    <string name="ui_open_c77124" formatted="false">"Open"</string>
+    <string name="ui_rename_0d0cba" formatted="false">"Rename"</string>
+    <string name="ui_add_to_home_screen_47ee0a" formatted="false">"Add to Home screen"</string>
+    <string name="ui_delete_empty_notebook_816a87" formatted="false">"Delete empty notebook"</string>
+    <string name="ui_confirm_adding_the_shortcut_on_your_home_scre_0e117e" formatted="false">"Confirm adding the shortcut on your Home screen"</string>
+    <string name="ui_your_launcher_does_not_support_pinned_shortcu_6b29dc" formatted="false">"Your launcher does not support pinned shortcuts"</string>
+    <string name="ui_cannot_add_the_shortcut_ab0a73" formatted="false">"Cannot add the shortcut"</string>
+    <string name="ui_only_notebooks_containing_no_documents_can_be_c63c8b" formatted="false">"Only notebooks containing no documents can be deleted."</string>
+    <string name="ui_delete_2f9daa" formatted="false">"Delete"</string>
+    <string name="ui_cannot_delete_8200c3" formatted="false">"Cannot delete"</string>
+    <string name="ui_notebook_name_05f293" formatted="false">"Notebook name"</string>
+    <string name="ui_new_notebook_9c3307" formatted="false">"New notebook"</string>
+    <string name="ui_rename_notebook_4fc19e" formatted="false">"Rename notebook"</string>
+    <string name="ui_save_a3030b" formatted="false">"Save"</string>
+    <string name="ui_home_screen_shortcut_was_not_updated_you_can_b7ae15" formatted="false">"Home screen shortcut was not updated. You can add it again."</string>
+    <string name="ui_recently_edited_c18fdf" formatted="false">"Recently edited"</string>
+    <string name="ui_recently_created_ee34c7" formatted="false">"Recently created"</string>
+    <string name="ui_title_a_z_c836b5" formatted="false">"Title (A–Z)"</string>
+    <string name="ui_manual_chapter_order_79ca70" formatted="false">"Manual chapter order"</string>
+    <string name="ui_search_relevance_8d0f86" formatted="false">"Search relevance"</string>
+    <string name="ui_sort_order_1eb55e" formatted="false">"Sort order · "</string>
+    <string name="ui_volume_chapter_group_1146d4" formatted="false">"Volume / chapter group"</string>
+    <string name="ui_for_example_volume_one_e511bf" formatted="false">"For example: Volume One"</string>
+    <string name="ui_tags_searchable_4cc0b9" formatted="false">"Tags (searchable)"</string>
+    <string name="ui_for_example_essay_draft_7505c4" formatted="false">"For example: #essay #draft"</string>
+    <string name="ui_volume_names_can_have_up_to_80_characters_abbe92" formatted="false">"Volume names can have up to 80 characters"</string>
+    <string name="ui_old_versions_are_saved_automatically_when_you_64d4b4" formatted="false">"Old versions are saved automatically when you edit. Up to 40 revisions per document."</string>
+    <string name="ui_revision_history_fd5a10" formatted="false">"Revision history · "</string>
+    <string name="ui_compare_with_current_version_13eccf" formatted="false">"Compare with current version"</string>
+    <string name="ui_close_3fd47e" formatted="false">"Close"</string>
+    <string name="ui_restore_as_a_copy_37cd83" formatted="false">"Restore as a copy"</string>
+    <string name="ui_history_copy_2cabee" formatted="false">" · History copy"</string>
+    <string name="ui_restore_this_version_655f0b" formatted="false">"Restore this version"</string>
+    <string name="ui_restore_this_revision_cc63c2" formatted="false">"Restore this revision?"</string>
+    <string name="ui_the_current_content_will_be_saved_in_revision_84fb97" formatted="false">"The current content will be saved in revision history first."</string>
+    <string name="ui_use_markdown_headings_such_as_and_to_build_an_eb0a31" formatted="false">"Use Markdown headings such as # and ## to build an outline."</string>
+    <string name="ui_remove_leading_indentation_f275a0" formatted="false">"Remove leading indentation"</string>
+    <string name="ui_indent_by_two_full_width_spaces_37ff4d" formatted="false">"Indent by two full-width spaces"</string>
+    <string name="ui_keep_one_blank_line_between_paragraphs_2a4c4e" formatted="false">"Keep one blank line between paragraphs"</string>
+    <string name="ui_remove_blank_lines_between_paragraphs_34b2aa" formatted="false">"Remove blank lines between paragraphs"</string>
+    <string name="ui_add_spaces_between_chinese_and_english_06175c" formatted="false">"Add spaces between Chinese and English"</string>
+    <string name="ui_format_text_plain_text_bab7c9" formatted="false">"Format text (plain text)"</string>
+    <string name="ui_no_changes_needed_40f9ee" formatted="false">"No changes needed"</string>
+    <string name="ui_preview_63ba24" formatted="false">" · Preview"</string>
+    <string name="ui_find_text_d95072" formatted="false">"Find text"</string>
+    <string name="ui_replace_with_leave_empty_to_delete_b7439b" formatted="false">"Replace with (leave empty to delete)"</string>
+    <string name="ui_replacement_text_f57e4d" formatted="false">"Replacement text"</string>
+    <string name="ui_case_sensitive_8c7e34" formatted="false">"Case sensitive"</string>
+    <string name="ui_regular_expression_af33e6" formatted="false">"Regular expression"</string>
+    <string name="ui_search_scope_document_text_e1c2bf" formatted="false">"Search scope (document text)"</string>
+    <string name="ui_current_document_8ee6eb" formatted="false">"Current document"</string>
+    <string name="ui_current_notebook_0f91f3" formatted="false">"Current notebook"</string>
+    <string name="ui_all_documents_e61e3e" formatted="false">"All documents"</string>
+    <string name="ui_revisions_are_saved_before_replacing_trash_an_8a9721" formatted="false">"Revisions are saved before replacing. Trash and read-only documents are excluded from bulk replacement."</string>
+    <string name="ui_no_matching_text_adc8e6" formatted="false">"No matching text"</string>
+    <string name="ui_previous_match_b7e4aa" formatted="false">"Previous match"</string>
+    <string name="ui_next_match_72ac88" formatted="false">"Next match"</string>
+    <string name="ui_count_matches_75fdc3" formatted="false">"Count matches"</string>
+    <string name="ui_replace_all_2918d1" formatted="false">"Replace all"</string>
+    <string name="ui_select_matches_to_replace_ea99b7" formatted="false">"Select matches to replace"</string>
+    <string name="ui_no_replaceable_text_5485bf" formatted="false">"No replaceable text"</string>
+    <string name="ui_replace_13e146" formatted="false">"Replace "</string>
+    <string name="ui_documents_with_a1a596" formatted="false">" documents with "</string>
+    <string name="ui_matches_bec226" formatted="false">" matches?"</string>
+    <string name="ui_the_current_version_will_be_kept_in_each_docu_72b032" formatted="false">"The current version will be kept in each document's revision history."</string>
+    <string name="ui_replace_131b13" formatted="false">"Replace"</string>
+    <string name="ui_replaced_1bddf8" formatted="false">"Replaced "</string>
+    <string name="ui_matches_af9560" formatted="false">" matches"</string>
+    <string name="ui_restore_the_document_before_opening_the_dual_874828" formatted="false">"Restore the document before opening the dual editor"</string>
+    <string name="ui_create_another_document_to_open_a_second_edit_b51b26" formatted="false">"Create another document to open a second editor"</string>
+    <string name="ui_choose_a_second_document_1c74b4" formatted="false">"Choose a second document"</string>
+    <string name="ui_write_down_an_idea_reference_or_your_next_sen_90ccfe" formatted="false">"Write down an idea, reference, or your next sentence…"</string>
+    <string name="ui_scratchpad_text_289f51" formatted="false">"Scratchpad text"</string>
+    <string name="ui_scratchpad_saved_automatically_b543d1" formatted="false">"Scratchpad · Saved automatically"</string>
+    <string name="ui_save_as_a_document_6289f4" formatted="false">"Save as a document"</string>
+    <string name="ui_write_something_first_768cda" formatted="false">"Write something first"</string>
+    <string name="ui_idea_ee06e5" formatted="false">"Idea · "</string>
+    <string name="ui_enter_one_keyword_per_line_checked_on_this_de_b38fd5" formatted="false">"Enter one keyword per line. Checked on this device only."</string>
+    <string name="ui_character_names_commonly_misspelled_words_wor_faa634" formatted="false">"Character names, commonly misspelled words, words to avoid…"</string>
+    <string name="ui_check_978e27" formatted="false">"Check"</string>
+    <string name="ui_matches_8bd554" formatted="false">" matches\n"</string>
+    <string name="ui_too_many_matches_07a30b" formatted="false">": too many matches\n"</string>
+    <string name="ui_enter_at_least_one_keyword_d496e4" formatted="false">"Enter at least one keyword"</string>
+    <string name="ui_no_voice_is_installed_for_this_language_4e8b46" formatted="false">"No voice is installed for this language"</string>
+    <string name="ui_system_text_to_speech_service_is_unavailable_e4d8bf" formatted="false">"System text-to-speech service is unavailable"</string>
+    <string name="ui_starting_text_to_speech_480929" formatted="false">"Starting text-to-speech…"</string>
+    <string name="ui_writing_time_overview_534ebc" formatted="false">"Writing time overview"</string>
+    <string name="ui_timing_is_on_up_to_60_seconds_after_the_last_168a78" formatted="false">"Timing is on · Up to 60 seconds after the last edit"</string>
+    <string name="ui_timing_is_off_existing_records_are_kept_96d225" formatted="false">"Timing is off · Existing records are kept"</string>
+    <string name="ui_no_daily_goal_899186" formatted="false">"No daily goal"</string>
+    <string name="ui_daily_goal_23e9db" formatted="false">"Daily goal: "</string>
+    <string name="ui_reached_261f86" formatted="false">"Reached"</string>
+    <string name="ui_remaining_6937b5" formatted="false">"Remaining: "</string>
+    <string name="ui_words_count_positive_changes_in_primary_and_r_4f06cf" formatted="false">"Words count positive changes in primary and reference text, including pasting. Deleting does not subtract; importing does not count. Time recording starts with this version: editing starts the timer, while the background, other windows, previews and read-only views pause it. Cell colors show progress toward the word goal."</string>
+    <string name="ui_added_dfbdb8" formatted="false">" added "</string>
+    <string name="ui_words_writing_time_123c9e" formatted="false">" words; writing time "</string>
+    <string name="ui_added_d763c8" formatted="false">"Added "</string>
+    <string name="ui_words_writing_time_ea7e33" formatted="false">" words\nWriting time "</string>
+    <string name="ui_annual_review_4b3376" formatted="false">"Annual review"</string>
+    <string name="ui_daily_statistics_last_28_days_def49f" formatted="false">"Daily statistics · Last 28 days"</string>
+    <string name="ui_daily_goal_d70f5d" formatted="false">"Daily goal"</string>
+    <string name="ui_0_means_no_goal_771265" formatted="false">"0 means no goal"</string>
+    <string name="ui_daily_word_goal_9be76b" formatted="false">"Daily word goal"</string>
+    <string name="ui_0_1_000_000_words_only_positive_text_word_cou_797f62" formatted="false">"0–1,000,000 words; only positive text word-count changes are recorded."</string>
+    <string name="ui_enter_a_number_from_0_to_1_000_000_ffcbd2" formatted="false">"Enter a number from 0 to 1,000,000"</string>
+    <string name="ui_choose_a_year_fd25cd" formatted="false">"Choose a year"</string>
+    <string name="ui_words_were_added_on_ba041e" formatted="false">"Words were added on "</string>
+    <string name="ui_days_longest_streak_c4c58e" formatted="false">" days · Longest streak: "</string>
+    <string name="ui_days_3cd654" formatted="false">" days\n"</string>
+    <string name="ui_no_word_count_growth_was_recorded_this_year_307eae" formatted="false">"No word-count growth was recorded this year."</string>
+    <string name="ui_most_productive_day_a13d53" formatted="false">"Most productive day: "</string>
+    <string name="ui_annual_writing_time_dd3aa7" formatted="false">"Annual writing time"</string>
+    <string name="ui_summarizes_daily_records_in_the_library_writi_3c25b1" formatted="false">"Summarizes daily records in the library. Writing days and streaks count word-count growth; days with edits but no added words may still record time. Time is measured as in daily statistics."</string>
+    <string name="ui_cannot_read_the_font_file_f28c6e" formatted="false">"Cannot read the font file"</string>
+    <string name="ui_font_files_must_be_32_mb_or_smaller_a3ca3a" formatted="false">"Font files must be 32 MB or smaller"</string>
+    <string name="ui_font_imported_3dc232" formatted="false">"Font imported"</string>
+    <string name="ui_font_import_failed_4cc7d0" formatted="false">"Font import failed"</string>
+    <string name="ui_choose_a_valid_ttf_or_otf_font_ba46a3" formatted="false">"Choose a valid TTF or OTF font.\n"</string>
+    <string name="ui_folder_scan_is_still_running_please_wait_f6d5cf" formatted="false">"Folder scan is still running. Please wait."</string>
+    <string name="ui_scan_utf_8_markdown_txt_in_the_selected_folde_e0af5f" formatted="false">"Scan UTF-8 Markdown / TXT in the selected folder and its subfolders. Files in the root go into the current notebook; each top-level subfolder becomes a notebook, and deeper folders are merged into it. Hidden files and other attachments are skipped.\n\nLimits: 5,000 entries, 1,000 documents, 64 MB total and 2 MB per document. After scanning you can select, rename and reorder documents. Nothing is saved until you confirm."</string>
+    <string name="ui_choose_a_folder_0d6fad" formatted="false">"Choose a folder"</string>
+    <string name="ui_cannot_choose_a_folder_b611e6" formatted="false">"Cannot choose a folder"</string>
+    <string name="ui_cannot_scan_right_now_ff1610" formatted="false">"Cannot scan right now"</string>
+    <string name="ui_the_file_provider_still_has_an_unfinished_rea_521423" formatted="false">"The file provider still has an unfinished read. Try again later."</string>
+    <string name="ui_scan_cancelled_no_documents_imported_03aa66" formatted="false">"Scan cancelled. No documents imported."</string>
+    <string name="ui_scanning_folder_4d7fda" formatted="false">"Scanning folder"</string>
+    <string name="ui_cancel_scan_323d82" formatted="false">"Cancel scan"</string>
+    <string name="ui_folder_import_failed_53accf" formatted="false">"Folder import failed"</string>
+    <string name="ui_no_documents_were_imported_14847a" formatted="false">"No documents were imported.\n"</string>
+    <string name="ui_share_import_failed_d95f33" formatted="false">"Share import failed"</string>
+    <string name="ui_cannot_open_the_zip_file_6892c9" formatted="false">"Cannot open the ZIP file"</string>
+    <string name="ui_zip_import_failed_e20fa6" formatted="false">"ZIP import failed"</string>
+    <string name="ui_imported_2a9010" formatted="false">"Imported "</string>
+    <string name="ui_documents_fb56f5" formatted="false">" documents"</string>
+    <string name="ui_markdown_layout_supports_headings_bold_italic_38a5bc" formatted="false">"Markdown layout supports headings, bold, italics, links, lists, tasks, quotes, code and basic tables. Links keep their text and URL. Images, math and HTML stay as text; external resources are not loaded. Tables wider than eight columns stay as source text."</string>
+    <string name="ui_pdf_layout_0f32cc" formatted="false">"PDF layout"</string>
+    <string name="ui_image_layout_5796d5" formatted="false">"Image layout"</string>
+    <string name="ui_choose_a_save_location_edfa33" formatted="false">"Choose a save location"</string>
+    <string name="ui_complete_or_cancel_the_current_export_first_c6ce74" formatted="false">"Complete or cancel the current export first"</string>
+    <string name="ui_cannot_export_d4f1b0" formatted="false">"Cannot export"</string>
+    <string name="ui_cannot_prepare_the_export_e55c78" formatted="false">"Cannot prepare the export"</string>
+    <string name="ui_choose_a_notebook_to_export_as_a_book_1fe13e" formatted="false">"Choose a notebook to export as a book"</string>
+    <string name="ui_this_notebook_has_no_documents_to_export_5d3937" formatted="false">"This notebook has no documents to export"</string>
+    <string name="ui_book_export_format_1edca3" formatted="false">"Book export format"</string>
+    <string name="ui_jianzuo_documents_48a64f" formatted="false">"Jianzuo-documents-"</string>
+    <string name="ui_export_library_backup_with_history_99a658" formatted="false">"Export library backup (with history)"</string>
+    <string name="ui_merge_from_a_backup_ec29f0" formatted="false">"Merge from a backup"</string>
+    <string name="ui_browse_local_automatic_backups_9f70d1" formatted="false">"Browse local automatic backups"</string>
+    <string name="ui_find_lost_content_by_keyword_aff56e" formatted="false">"Find lost content by keyword"</string>
+    <string name="ui_jianzuo_backup_9286a4" formatted="false">"Jianzuo-backup-"</string>
+    <string name="ui_backup_failed_f3b414" formatted="false">"Backup failed"</string>
+    <string name="ui_saved_as_a_new_document_source_content_preser_3e11f0" formatted="false">"Saved as a new document. Source content preserved."</string>
+    <string name="ui_cannot_read_the_backup_96d303" formatted="false">"Cannot read the backup"</string>
+    <string name="ui_backups_must_be_64_mb_or_smaller_37190d" formatted="false">"Backups must be 64 MB or smaller"</string>
+    <string name="ui_backup_restore_failed_417945" formatted="false">"Backup restore failed"</string>
+    <string name="ui_restore_daily_words_and_writing_time_too_c4bd42" formatted="false">"Restore daily words and writing time too"</string>
+    <string name="ui_for_each_date_keep_the_larger_value_instead_o_cc385d" formatted="false">"For each date, keep the larger value instead of adding again. Use this for restoring local backups, not for combining writing totals across devices."</string>
+    <string name="ui_preview_backup_merge_fd7d79" formatted="false">"Preview backup merge"</string>
+    <string name="ui_notebooks_0cefdb" formatted="false">" notebooks · "</string>
+    <string name="ui_documents_including_trash_total_9e3610" formatted="false">" documents (including Trash)\nTotal: "</string>
+    <string name="ui_words_history_volumes_tags_and_favorites_are_928eb0" formatted="false">" words\n\nHistory, volumes, tags and favorites are kept. Existing documents are not overwritten; importing again creates another copy."</string>
+    <string name="ui_merge_and_restore_bcc7bb" formatted="false">"Merge and restore"</string>
+    <string name="ui_merged_3d03d2" formatted="false">"Merged "</string>
+    <string name="ui_automatic_backup_ba3dfa" formatted="false">"Automatic backup"</string>
+    <string name="ui_a_previous_library_snapshot_is_kept_when_edit_9ad322" formatted="false">"A previous library snapshot is kept when edits are saved: at most once every five minutes, keeping the latest 24 snapshots. Uninstalling deletes local snapshots; export a .jzb backup separately."</string>
+    <string name="ui_local_automatic_backups_600d83" formatted="false">"Local automatic backups"</string>
+    <string name="ui_cannot_read_the_snapshot_508c65" formatted="false">"Cannot read the snapshot"</string>
+    <string name="ui_cannot_import_751d82" formatted="false">"Cannot import"</string>
+    <string name="ui_choose_1_1_000_markdown_txt_files_21f492" formatted="false">"Choose 1–1,000 Markdown / TXT files"</string>
+    <string name="ui_choose_a_markdown_or_txt_file_cfc8be" formatted="false">"Choose a Markdown or TXT file: "</string>
+    <string name="ui_import_failed_01aaeb" formatted="false">"Import failed"</string>
+    <string name="ui_no_files_were_imported_use_utf_8_text_2023ea" formatted="false">"No files were imported. Use UTF-8 text.\n"</string>
+    <string name="ui_the_paragraph_is_at_a_boundary_or_the_cursor_3c8f6c" formatted="false">"The paragraph is at a boundary, or the cursor is on an empty line"</string>
+    <string name="ui_history_current_version_added_abc631" formatted="false">"History → Current version\n＋ Added "</string>
+    <string name="ui_lines_removed_736e4c" formatted="false">" lines   − Removed "</string>
+    <string name="ui_lines_07b447" formatted="false">" lines\n"</string>
+    <string name="ui_large_changes_are_shown_as_whole_blocks_096e86" formatted="false">"Large changes are shown as whole blocks.\n"</string>
+    <string name="ui_the_two_versions_are_identical_7c476f" formatted="false">"The two versions are identical.\n"</string>
+    <string name="ui_diff_preview_truncated_restore_a_history_copy_3864b6" formatted="false">"\n…Diff preview truncated. Restore a history copy to view all content.\n"</string>
+    <string name="ui_no_newline_2a4559" formatted="false">" ⟵ No newline\n"</string>
+    <string name="ui_revision_differences_4e1122" formatted="false">"Revision differences"</string>
+    <string name="ui_select_up_to_2_000_matches_narrow_the_search_9ec360" formatted="false">"Select up to 2,000 matches. Narrow the search scope."</string>
+    <string name="ui_match_567404" formatted="false">" · Match "</string>
+    <string name="ui_select_replacements_2223e4" formatted="false">"Select replacements · "</string>
+    <string name="ui_select_all_clear_baf299" formatted="false">"Select all / Clear"</string>
+    <string name="ui_replace_selected_matches_e11473" formatted="false">"Replace selected matches"</string>
+    <string name="ui_select_at_least_one_match_401ad2" formatted="false">"Select at least one match"</string>
+    <string name="ui_replace_the_selected_c9a483" formatted="false">"Replace the selected "</string>
+    <string name="ui_matches_f49d39" formatted="false">" matches?"</string>
+    <string name="ui_replacement_text_is_inserted_literally_the_cu_2b23c1" formatted="false">"Replacement text is inserted literally. The current version is saved in revision history."</string>
+    <string name="ui_document_has_changed_2e32a0" formatted="false">"Document has changed"</string>
+    <string name="ui_close_the_preview_and_search_again_nothing_wa_18d49a" formatted="false">"Close the preview and search again. Nothing was replaced."</string>
+    <string name="ui_mixed_word_count_4c0538" formatted="false">"Mixed word count: "</string>
+    <string name="ui_characters_including_whitespace_26e1ac" formatted="false">"\nCharacters (including whitespace): "</string>
+    <string name="ui_characters_excluding_whitespace_055786" formatted="false">"\nCharacters (excluding whitespace): "</string>
+    <string name="ui_han_characters_70f677" formatted="false">"\nHan characters: "</string>
+    <string name="ui_current_notebook_ae82fb" formatted="false">"\n\nCurrent notebook: "</string>
+    <string name="ui_words_66b078" formatted="false">" words\n"</string>
+    <string name="ui_documents_without_a_volume_3c4c67" formatted="false">"Documents without a volume"</string>
+    <string name="ui_current_volume_c17789" formatted="false">"Current volume “"</string>
+    <string name="ui_words_excluding_trash_3dfc4f" formatted="false">" words\n(excluding Trash)"</string>
+    <string name="ui_estimated_reading_time_a5e718" formatted="false">"\n\nEstimated reading time: "</string>
+    <string name="ui_minutes_created_cc9304" formatted="false">" minutes\nCreated: "</string>
+    <string name="ui_ok_de32e2" formatted="false">"OK"</string>
+    <string name="ui_enter_text_to_find_aa7fce" formatted="false">"Enter text to find"</string>
+    <string name="ui_more_than_10_000_matches_narrow_the_search_d62f33" formatted="false">"More than 10,000 matches. Narrow the search."</string>
+    <string name="ui_selection_count_does_not_match_3d3eff" formatted="false">"Selection count does not match"</string>
+    <string name="ui_invalid_match_position_a31f09" formatted="false">"Invalid match position"</string>
+    <string name="ui_search_documents_trash_revision_history_and_t_d8650b" formatted="false">"Search documents, Trash, revision history and the latest 24 local snapshots. Identical content from the same document appears once. Recovery saves a new document."</string>
+    <string name="ui_keyword_in_title_or_text_db30e9" formatted="false">"Keyword in title or text"</string>
+    <string name="ui_recovery_keyword_8ca354" formatted="false">"Recovery keyword"</string>
+    <string name="ui_search_content_b445ac" formatted="false">"Search content"</string>
+    <string name="ui_enter_a_remembered_fragment_to_start_searchin_c98c59" formatted="false">"Enter a remembered fragment to start searching"</string>
+    <string name="ui_recovery_search_status_407504" formatted="false">"Recovery search status"</string>
+    <string name="ui_find_lost_content_30a702" formatted="false">"Find lost content"</string>
+    <string name="ui_enter_a_keyword_from_the_title_or_text_e6180e" formatted="false">"Enter a keyword from the title or text"</string>
+    <string name="ui_searching_close_this_window_to_cancel_6d2850" formatted="false">"Searching… Close this window to cancel."</string>
+    <string name="ui_no_matching_content_8f8d97" formatted="false">"No matching content"</string>
+    <string name="ui_showing_up_to_200_versions_narrow_your_keywor_617ce4" formatted="false">"\nShowing up to 200 versions. Narrow your keywords."</string>
+    <string name="ui_recovered_content_preview_7f50d7" formatted="false">"Recovered content preview"</string>
+    <string name="ui_back_572cf4" formatted="false">"Back"</string>
+    <string name="ui_save_as_a_new_document_92d6f5" formatted="false">"Save as a new document"</string>
+    <string name="ui_provide_a_text_file_through_the_system_file_p_9555d3" formatted="false">"Provide a text file through the system file picker or sharing"</string>
+    <string name="ui_use_utf_8_files_with_a_md_markdown_or_txt_ext_29f0b9" formatted="false">"Use UTF-8 files with a .md, .markdown or .txt extension"</string>
+    <string name="ui_each_imported_document_must_be_2_mb_or_smalle_63ab09" formatted="false">"Each imported document must be 2 MB or smaller"</string>
+    <string name="ui_shared_text_556758" formatted="false">"Shared text"</string>
+    <string name="ui_no_text_or_markdown_txt_files_to_import_1487ea" formatted="false">"No text or Markdown / TXT files to import"</string>
+    <string name="ui_import_up_to_1_000_documents_at_a_time_cd02ea" formatted="false">"Import up to 1,000 documents at a time"</string>
+    <string name="ui_side_by_side_dual_editor_14e68a" formatted="false">"Side-by-side dual editor"</string>
+    <string name="ui_stacked_dual_editor_53852d" formatted="false">"Stacked dual editor"</string>
+    <string name="ui_preview_13d61f" formatted="false">"Preview"</string>
+    <string name="ui_notebook_deleted_e1deed" formatted="false">"Notebook deleted"</string>
+    <string name="ui_indent_66c740" formatted="false">"Indent"</string>
+    <string name="ui_date_70d0c1" formatted="false">"Date"</string>
+    <string name="ui_heading_326c5b" formatted="false">"# Heading"</string>
+    <string name="ui_task_52fdbb" formatted="false">"Task"</string>
+    <string name="ui_find_300331" formatted="false">"Find"</string>
+    <string name="ui_choose_1_3_rows_e2da4a" formatted="false">"Choose 1–3 rows"</string>
+    <string name="ui_duplicate_shortcut_5681d5" formatted="false">"Duplicate shortcut"</string>
+    <string name="ui_use_a_name_of_1_24_characters_without_newline_93a157" formatted="false">"Use a name of 1–24 characters without newlines"</string>
+    <string name="ui_enter_text_to_insert_a1739e" formatted="false">"Enter text to insert"</string>
+    <string name="ui_unknown_shortcut_2836a9" formatted="false">"Unknown shortcut"</string>
+    <string name="ui_up_to_30_custom_shortcuts_with_8_000_characte_158f5a" formatted="false">"Up to 30 custom shortcuts with 8,000 characters in total"</string>
+    <string name="ui_built_in_shortcut_missing_9d9393" formatted="false">"Built-in shortcut missing"</string>
+    <string name="ui_unknown_shortcut_toolbar_format_09692e" formatted="false">"Unknown shortcut toolbar format"</string>
+    <string name="ui_too_many_shortcuts_f487ca" formatted="false">"Too many shortcuts"</string>
+    <string name="ui_cannot_complete_this_action_1f0a01" formatted="false">"Cannot complete this action"</string>
+    <string name="ui_volume_name_b364b6" formatted="false">"Volume name"</string>
+    <string name="ui_new_volume_8fc74c" formatted="false">"＋ New volume"</string>
+    <string name="ui_documents_785486" formatted="false">" documents"</string>
+    <string name="ui_manage_volumes_15d2f7" formatted="false">"Manage volumes · "</string>
+    <string name="ui_new_volume_7f2408" formatted="false">"New volume"</string>
+    <string name="ui_rename_volume_4c0e0b" formatted="false">"Rename volume"</string>
+    <string name="ui_move_volume_up_18b28f" formatted="false">"Move volume up"</string>
+    <string name="ui_move_volume_down_d17113" formatted="false">"Move volume down"</string>
+    <string name="ui_move_volume_to_another_notebook_00e842" formatted="false">"Move volume to another notebook"</string>
+    <string name="ui_move_volume_documents_to_trash_630529" formatted="false">"Move volume documents to Trash"</string>
+    <string name="ui_restore_trashed_documents_in_this_volume_f920bc" formatted="false">"Restore trashed documents in this volume"</string>
+    <string name="ui_dissolve_volume_keep_documents_b8e9ed" formatted="false">"Dissolve volume (keep documents)"</string>
+    <string name="ui_move_volume_to_including_trashed_chapters_5f7f62" formatted="false">"Move volume to (including trashed chapters)"</string>
+    <string name="ui_move_all_documents_in_this_volume_to_trash_5a0dd0" formatted="false">"Move all documents in this volume to Trash?"</string>
+    <string name="ui_the_volume_is_kept_text_and_revision_history_acbc56" formatted="false">"The volume is kept. Text and revision history can be restored."</string>
+    <string name="ui_dissolve_fbb8f0" formatted="false">"Dissolve “"</string>
+    <string name="ui_all_documents_in_this_volume_including_trash_e77fca" formatted="false">"All documents in this volume, including Trash, will become ungrouped. Text and history are kept."</string>
+    <string name="ui_dissolve_5c5510" formatted="false">"Dissolve"</string>
+    <string name="ui_chapter_numbering_template_a9e3a4" formatted="false">"Chapter numbering template"</string>
+    <string name="ui_starting_number_87fe9c" formatted="false">"Starting number"</string>
+    <string name="ui_starting_chapter_number_a11576" formatted="false">"Starting chapter number"</string>
+    <string name="ui_minimum_number_of_digits_1_7_875fcb" formatted="false">"Minimum number of digits (1–7)"</string>
+    <string name="ui_entire_notebook_b94949" formatted="false">"Entire notebook"</string>
+    <string name="ui_remove_existing_chapter_numbers_at_the_start_843829" formatted="false">"Remove existing chapter numbers at the start of titles"</string>
+    <string name="ui_number_chapters_7ebcb1" formatted="false">"Number chapters · "</string>
+    <string name="ui_no_documents_to_number_in_this_scope_c4f7fc" formatted="false">"No documents to number in this scope"</string>
+    <string name="ui_untitled_8c974d" formatted="false">"Untitled"</string>
+    <string name="ui_only_the_first_30_are_shown_confirmation_appl_624ee1" formatted="false">"Only the first 30 are shown. Confirmation applies to all "</string>
+    <string name="ui_documents_6a5c8c" formatted="false">" documents.\n"</string>
+    <string name="ui_old_titles_and_text_are_kept_in_each_document_afd3c8" formatted="false">"Old titles and text are kept in each document's revision history."</string>
+    <string name="ui_numbering_preview_e08a7e" formatted="false">"Numbering preview · "</string>
+    <string name="ui_apply_numbering_df384c" formatted="false">"Apply numbering"</string>
+    <string name="ui_scan_cancelled_0e17a0" formatted="false">"Scan cancelled"</string>
+    <string name="ui_folder_has_more_than_5_000_entries_4e4289" formatted="false">"Folder has more than 5,000 entries"</string>
+    <string name="ui_folder_contains_duplicate_or_circular_referen_8ca2ed" formatted="false">"Folder contains duplicate or circular references"</string>
+    <string name="ui_no_markdown_or_txt_documents_in_this_folder_dcc103" formatted="false">"No Markdown or TXT documents in this folder"</string>
+    <string name="ui_cannot_open_the_document_b9c30e" formatted="false">"Cannot open the document"</string>
+    <string name="ui_limits_2_mb_per_document_and_64_mb_per_import_2c9ab6" formatted="false">"Limits: 2 MB per document and 64 MB per import"</string>
+    <string name="ui_zip_has_more_than_5_000_entries_a52470" formatted="false">"ZIP has more than 5,000 entries"</string>
+    <string name="ui_zip_contains_an_invalid_path_520cf4" formatted="false">"ZIP contains an invalid path"</string>
+    <string name="ui_uncompressed_zip_exceeds_64_mb_911f3a" formatted="false">"Uncompressed ZIP exceeds 64 MB"</string>
+    <string name="ui_no_markdown_or_txt_documents_in_this_zip_a5fc04" formatted="false">"No Markdown or TXT documents in this ZIP"</string>
+    <string name="ui_unsupported_library_version_868b38" formatted="false">"Unsupported library version"</string>
+    <string name="ui_invalid_notebook_3ff57f" formatted="false">"Invalid notebook"</string>
+    <string name="ui_notebook_missing_0649d8" formatted="false">"Notebook missing"</string>
+    <string name="ui_invalid_daily_statistics_517d92" formatted="false">"Invalid daily statistics"</string>
+    <string name="ui_invalid_writing_time_date_bfa6fd" formatted="false">"Invalid writing-time date"</string>
+    <string name="ui_invalid_writing_time_e3e780" formatted="false">"Invalid writing time"</string>
+    <string name="ui_invalid_volume_id_7c9248" formatted="false">"Invalid volume ID"</string>
+    <string name="ui_invalid_or_duplicate_volume_e76465" formatted="false">"Invalid or duplicate volume"</string>
+    <string name="ui_invalid_document_id_53b237" formatted="false">"Invalid document ID"</string>
+    <string name="ui_duplicate_document_id_6f10c7" formatted="false">"Duplicate document ID"</string>
+    <string name="ui_deletion_time_missing_6562dd" formatted="false">"Deletion time missing"</string>
+    <string name="ui_invalid_time_25b9d2" formatted="false">"Invalid time"</string>
+    <string name="ui_too_many_revisions_7bb748" formatted="false">"Too many revisions"</string>
+    <string name="ui_invalid_revision_time_4349de" formatted="false">"Invalid revision time"</string>
+    <string name="ui_invalid_document_volume_reference_c9a91f" formatted="false">"Invalid document volume reference"</string>
+    <string name="ui_must_be_text_5b4104" formatted="false">" must be text"</string>
+    <string name="ui_cannot_read_the_folder_check_access_permissio_9b7406" formatted="false">"Cannot read the folder. Check access permissions."</string>
+    <string name="ui_folder_contains_an_invalid_entry_bb0df1" formatted="false">"Folder contains an invalid entry"</string>
+    <string name="ui_trash_a9ca81" formatted="false">"Trash"</string>
+    <string name="ui_notebook_name_is_empty_duplicated_or_too_long_c1791d" formatted="false">"Notebook name is empty, duplicated or too long"</string>
+    <string name="ui_notebook_does_not_exist_2c2aa6" formatted="false">"Notebook does not exist"</string>
+    <string name="ui_move_all_documents_out_first_including_trash_d3e3d9" formatted="false">"Move all documents out first, including Trash, and keep at least one notebook"</string>
+    <string name="ui_select_a_valid_chapter_first_2b7941" formatted="false">"Select a valid chapter first"</string>
+    <string name="ui_use_a_volume_name_of_1_80_characters_in_an_ex_ccb0a0" formatted="false">"Use a volume name of 1–80 characters in an existing notebook"</string>
+    <string name="ui_a_volume_with_this_name_already_exists_in_the_228d85" formatted="false">"A volume with this name already exists in the notebook"</string>
+    <string name="ui_volume_and_document_are_not_in_the_same_noteb_c807bb" formatted="false">"Volume and document are not in the same notebook"</string>
+    <string name="ui_volume_does_not_exist_2bb75a" formatted="false">"Volume does not exist"</string>
+    <string name="ui_use_a_volume_name_of_1_80_characters_6ac18b" formatted="false">"Use a volume name of 1–80 characters"</string>
+    <string name="ui_notebook_or_volume_does_not_exist_3dabec" formatted="false">"Notebook or volume does not exist"</string>
+    <string name="ui_the_target_notebook_has_a_volume_with_this_na_e190df" formatted="false">"The target notebook has a volume with this name. Rename it first."</string>
+    <string name="ui_only_valid_documents_in_the_same_notebook_can_e02c55" formatted="false">"Only valid documents in the same notebook can be reordered"</string>
+    <string name="ui_cannot_prepare_the_export_file_16295b" formatted="false">"Cannot prepare the export file"</string>
+    <string name="ui_invalid_export_snapshot_id_3261c7" formatted="false">"Invalid export snapshot ID"</string>
+    <string name="ui_documents_have_changed_preview_again_no_title_1d1fe8" formatted="false">"Documents have changed. Preview again; no titles were changed."</string>
+    <string name="ui_the_template_must_include_n_numbers_must_be_1_e25b49" formatted="false">"The template must include {n}; numbers must be 1–1,000,000"</string>
+    <string name="ui_generated_title_is_empty_or_exceeds_1_000_cha_ee70ef" formatted="false">"Generated title is empty or exceeds 1,000 characters"</string>
+    <string name="ui_trash_history_bf6f4b" formatted="false">"Trash history"</string>
+    <string name="ui_enter_a_keyword_from_the_title_or_text_to_rec_25172b" formatted="false">"Enter a keyword from the title or text to recover"</string>
+    <string name="ui_snapshot_exceeds_the_reading_limit_a7c917" formatted="false">"Snapshot exceeds the reading limit"</string>
+    <string name="ui_search_cancelled_b66582" formatted="false">"Search cancelled"</string>
+    <string name="ui_select_documents_to_import_tap_edit_to_previe_0749e3" formatted="false">"Select documents to import. Tap Edit to preview, rename or reorder."</string>
+    <string name="ui_edit_051836" formatted="false">"Edit"</string>
+    <string name="ui_title_after_import_d0c311" formatted="false">"Title after import"</string>
+    <string name="ui_import_title_a5644f" formatted="false">"Import title"</string>
+    <string name="ui_import_order_cd2dce" formatted="false">"Import order"</string>
+    <string name="ui_preview_truncated_import_keeps_all_text_1544ab" formatted="false">"\n…(Preview truncated; import keeps all text)"</string>
+    <string name="ui_import_document_preview_286459" formatted="false">"Import document preview"</string>
+    <string name="ui_enter_a_title_433da1" formatted="false">"Enter a title"</string>
+    <string name="ui_order_is_outside_the_allowed_range_8a7c3d" formatted="false">"Order is outside the allowed range"</string>
+    <string name="ui_import_preview_ffc931" formatted="false">"Import preview · "</string>
+    <string name="ui_import_selected_documents_ccce7a" formatted="false">"Import selected documents"</string>
+    <string name="ui_select_at_least_one_document_2e0485" formatted="false">"Select at least one document"</string>
+    <string name="ui_library_loading_failed_original_file_preserve_b33994" formatted="false">"Library loading failed. Original file preserved; overwriting is blocked."</string>
+    <string name="ui_current_library_validation_failed_nothing_was_07654a" formatted="false">"Current library validation failed; nothing was overwritten"</string>
+    <string name="ui_cannot_create_the_backup_folder_84da05" formatted="false">"Cannot create the backup folder"</string>
+    <string name="ui_cannot_prepare_the_rendered_file_cdc189" formatted="false">"Cannot prepare the rendered file"</string>
+    <string name="ui_unsupported_rendering_format_accffa" formatted="false">"Unsupported rendering format"</string>
+    <string name="ui_image_exceeds_16_000_pixels_split_into_chapte_2674d0" formatted="false">"Image exceeds 16,000 pixels. Split into chapters or use PDF."</string>
+    <string name="ui_cannot_paginate_this_content_export_separate_f25c4e" formatted="false">"Cannot paginate this content. Export separate chapters."</string>
+    <string name="ui_document_exceeds_1_000_pages_export_separate_000f0c" formatted="false">"Document exceeds 1,000 pages. Export separate chapters."</string>
+    <string name="ui_select_shortcuts_to_show_long_press_and_drag_cbf8a0" formatted="false">"Select shortcuts to show. Long press ≡ and drag before another item, or tap ≡ to reorder. Each row scrolls horizontally."</string>
+    <string name="ui_shortcut_rows_c8742c" formatted="false">"Shortcut rows"</string>
+    <string name="ui_1_row_c84a4b" formatted="false">"1 row"</string>
+    <string name="ui_2_rows_740c22" formatted="false">"2 rows"</string>
+    <string name="ui_3_rows_307337" formatted="false">"3 rows"</string>
+    <string name="ui_shortcut_item_list_7533b0" formatted="false">"Shortcut item list"</string>
+    <string name="ui_show_shortcut_37a69d" formatted="false">"Show shortcut: "</string>
+    <string name="ui_edit_shortcut_ecc031" formatted="false">"Edit shortcut: "</string>
+    <string name="ui_reorder_shortcut_7fd591" formatted="false">"Reorder shortcut: "</string>
+    <string name="ui_jianzuo_shortcut_7d32bd" formatted="false">"Jianzuo shortcut"</string>
+    <string name="ui_move_to_first_511a29" formatted="false">"Move to first"</string>
+    <string name="ui_move_up_f853a7" formatted="false">"Move up"</string>
+    <string name="ui_move_down_e75e8b" formatted="false">"Move down"</string>
+    <string name="ui_move_to_last_327c3b" formatted="false">"Move to last"</string>
+    <string name="ui_delete_this_item_63310b" formatted="false">"Delete this item"</string>
+    <string name="ui_add_shortcut_172ed2" formatted="false">"Add shortcut"</string>
+    <string name="ui_reset_layout_77ef57" formatted="false">"Reset layout"</string>
+    <string name="ui_name_up_to_24_characters_593cbb" formatted="false">"Name (up to 24 characters)"</string>
+    <string name="ui_shortcut_name_54ad5d" formatted="false">"Shortcut name"</string>
+    <string name="ui_text_to_insert_newlines_allowed_4abf26" formatted="false">"Text to insert; newlines allowed"</string>
+    <string name="ui_shortcut_text_e7a1b5" formatted="false">"Shortcut text"</string>
+    <string name="ui_edit_shortcut_8473a8" formatted="false">"Edit shortcut"</string>
+    <string name="ui_choose_a_jianzuo_jzb_backup_a7a4b0" formatted="false">"Choose a Jianzuo .jzb backup"</string>
+    <string name="ui_backup_validation_failed_the_file_may_be_inco_87232d" formatted="false">"Backup validation failed. The file may be incomplete."</string>
+    <string name="ui_image_export_failed_2ce917" formatted="false">"Image export failed"</string>
+    <string name="language">"Interface language"</string>
+    <string name="untitled_document">"Untitled document"</string>
+    <string name="filter_all">"All documents"</string>
+    <string name="filter_favorites">"Favorites"</string>
+    <string name="filter_trash">"Trash"</string>
+    <string name="duration_seconds">"%1$d s"</string>
+    <string name="duration_minutes">"%1$d min %2$d s"</string>
+    <string name="duration_hours">"%1$d h %2$d min"</string>
+    <string name="automatic_backup_source">"Automatic backup · %1$s"</string>
+    <string name="open_notebook">"Open “%1$s”"</string>
+    <string-array name="language_options"><item>"Follow system"</item><item>"简体中文"</item><item>"English"</item></string-array>
+    <string-array name="count_units"><item>"words"</item><item>"characters"</item><item>"characters (excluding spaces)"</item><item>"Han characters"</item></string-array>
+    <string-array name="count_modes"><item>"Mixed count (Han characters and English words)"</item><item>"Characters (including spaces and punctuation)"</item><item>"Characters (excluding spaces, including punctuation)"</item><item>"Han characters only"</item></string-array>
+<string name="pane_activate">"Activate %1$s"</string>
+<string name="pane_choose">"Choose %1$s document"</string>
+<string name="pane_edit">"Edit %1$s text"</string>
+<string name="pane_preview">"Preview %1$s"</string>
+<string name="pane_scroll">"%1$s scroll area"</string>
+<string name="pane_title">"%1$s title"</string>
+<string name="pane_body">"%1$s text"</string>
+<string name="pane_readonly_title">"%1$s title (read only)"</string>
+<string name="pane_readonly_body">"%1$s text (read only)"</string>
+<string name="daily_summary">"Words added today: %1$d\nRecorded words: %2$d · Days: %3$d"</string>
+<string name="time_summary">"Writing today: %1$s · Total: %2$s"</string>
+<string name="year_label">"%1$d"</string>
+<string name="year_words">"%1$d · Words written: %2$d"</string>
+<string name="year_time">"Writing time: %1$s · Days recorded: %2$d"</string>
+<string name="month_summary">"%1$s · Words: %2$d · Writing: %3$s"</string>
+<string name="shortcut_row">"Shortcut row %1$d"</string>
+<string name="words_label">"Words: %1$d"</string>
+<string name="permanent_delete_message">"“%1$s” will be permanently deleted. This cannot be undone."</string>
+<string name="delete_notebook_title">"Delete “%1$s”?"</string>
+<string name="shortcut_undo">"Undo"</string>
+<string name="shortcut_redo">"Redo"</string>
+<string name="copy_title">"%1$s · Copy"</string>
+    <string name="ai_continue">AI continuation</string>
+    <string name="ai_settings">DeepSeek AI settings</string>
+    <string name="ai_provider">Provider: DeepSeek · https://api.deepseek.com</string>
+    <string name="ai_key_privacy">Enter your own API Key. It is encrypted on this device and excluded from manuscript backups. Requests go directly to DeepSeek; charges apply to your account.</string>
+    <string name="ai_api_key">DeepSeek API Key</string>
+    <string name="ai_key_saved">Key saved · leave blank to keep it</string>
+    <string name="ai_model">Model ID</string>
+    <string name="ai_test_hint">Test connection to see available models. This does not generate text.</string>
+    <string name="ai_status">AI status</string>
+    <string name="ai_test">Test connection</string>
+    <string name="ai_save">Save AI settings</string>
+    <string name="ai_clear_key">Remove saved Key</string>
+    <string name="ai_testing">Connecting to DeepSeek…</string>
+    <string name="ai_test_ok">Connected. Available models: %1$s</string>
+    <string name="ai_key_cleared">Saved Key removed.</string>
+    <string name="ai_context_notice">Generate at the cursor (at the end in preview). The title, up to 12,000 characters before and 2,000 after the cursor, and your direction will be sent to DeepSeek. Review and edit the result before inserting. Selected text is kept.</string>
+    <string name="ai_direction">Direction (optional; required for an empty document)</string>
+    <string name="ai_length">Continuation length</string>
+    <string name="ai_ready">Ready. Generate sends manuscript context to DeepSeek.</string>
+    <string name="ai_generate">Generate / regenerate</string>
+    <string name="ai_cancel_request">Cancel generation</string>
+    <string name="ai_generating">Generating… You can cancel at any time.</string>
+    <string name="ai_result">Continuation preview</string>
+    <string name="ai_insert">Insert at cursor</string>
+    <string name="ai_copy">Copy result</string>
+    <string name="ai_copied">Result copied.</string>
+    <string name="ai_generated">Ready to review · tokens · input %1$d / output %2$d</string>
+    <string name="ai_truncated">Token limit reached; the ending may be incomplete. Review before inserting · tokens · input %1$d / output %2$d</string>
+    <string name="ai_conflict">The document changed or became unavailable. Copy this result and reopen AI continuation from the current text.</string>
+    <string name="ai_key_error">API Key is missing or invalid. Check your DeepSeek Key in AI settings.</string>
+    <string name="ai_balance_error">Your DeepSeek account has insufficient balance.</string>
+    <string name="ai_rate_error">DeepSeek is rate limiting requests. Try again later.</string>
+    <string name="ai_network_error">Cannot connect. Check your network and try again.</string>
+    <string name="ai_timeout_error">The request timed out. You can try again; the provider may have already charged for the request.</string>
+    <string name="ai_cancelled">Generation cancelled. Original text was kept. The provider may still charge for a sent request.</string>
+    <string name="ai_input_error">Check the model ID and direction. Empty documents need a direction.</string>
+    <string name="ai_server_error">DeepSeek is temporarily unavailable. Try again later.</string>
+    <string name="ai_response_error">No usable continuation was returned. Try changing the direction.</string>
+    <string name="ai_storage_error">Cannot access the encrypted Key. Open AI settings and save your Key again.</string>
+    <string name="ai_close">Close</string>
+    <string-array name="ai_lengths"><item>Short · about 300 characters / words</item><item>Medium · about 800 characters / words</item><item>Long · about 1,500 characters / words</item></string-array>
+</resources>

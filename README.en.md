@@ -2,9 +2,21 @@
 
 [中文](README.md) · **English**
 
-A quiet, native writing space built with SwiftUI for **Mac, iPhone, and iPad**. One Xcode project, with no third-party dependencies.
+A quiet, native writing space. The SwiftUI / Xcode project supports **Mac, iPhone, and iPad**; the native Android Studio project supports **Android phones and tablets**. Neither app requires third-party libraries at runtime.
 
 [Download](https://github.com/mrlingan/jianzuo/releases) · [Release notes (Chinese)](Docs/Releases/v1.0.0.md) · [Report an issue](https://github.com/mrlingan/jianzuo/issues) · [Contribute](CONTRIBUTING.md)
+
+## Android phones and tablets
+
+A native Android Studio project is available in [`Android`](Android). Open that directory in Android Studio and run the `app` configuration. Android 8.0+ is supported. A single APK adapts to phone navigation, tablet list/editor panes, wide three-pane windows, and split screen.
+
+The Android app includes native writing, notebooks, search, favorites, Markdown preview, focus mode, atomic autosave, trash and restore, UTF-8 Markdown/TXT import and export, writing metrics, goals, fonts, and light/dark appearance. Each platform stores its own local library; Markdown/TXT files exchange document content.
+
+```sh
+bash Scripts/build_android.sh
+```
+
+The installable debug APK is written to `Build/Android/jianzuo-android-debug.apk`. See the [Android project guide](Android/README.md) and [validation record](Docs/Android-validation.md) (Chinese).
 
 ## Screenshots
 
@@ -43,22 +55,30 @@ iPhone uses a document list and a separate editing screen. Wider iPad windows sh
   </tr>
 </table>
 
-These are actual v1.0.0 screenshots using the included sample documents. Mobile screenshots were captured in iPhone / iPad simulators. **The app interface is currently in Chinese; the README is available in Chinese and English.**
+These are actual v1.0.0 screenshots using the included sample documents. Mobile screenshots were captured in iPhone / iPad simulators. **The Apple app interface is currently in Chinese; the README is available in Chinese and English. Android 1.11.0 adds Chinese and English interface languages.**
 
 ## Features and how to use them
 
 | Feature | Usage |
 | --- | --- |
 | Native editing | Create a document and edit its title and body. NSTextView on Mac and UITextView on iOS support Chinese input, text selection, and native undo. |
-| Notebooks and search | Organize documents into Drafts (文稿), Ideas (灵感), or Journal (日记). Search matches titles and body text; documents are sorted by their latest edit. |
+| Notebooks and search | Use the built-in Drafts (文稿), Ideas (灵感), and Journal (日记), or create and rename custom notebooks. Search matches titles, body text, and tags; documents are sorted by their latest edit. |
 | Markdown preview | Toggle the eye icon to preview headings, bold, italics, links, quotations, ordered / unordered lists, fenced code blocks, and horizontal rules. |
 | Favorites and organization | Use the star icon to favorite a document. The More menu can duplicate documents, move them to another notebook, or send them to Trash. Mac document cards also have a context menu. |
 | Trash and recovery | Trashed documents can be restored. Permanent deletion requires confirmation and cannot be undone. |
-| Import and export | Import UTF-8 Markdown / TXT from the document list's More menu. Export the body using the share icon: Markdown or TXT on Mac, Markdown on iOS. |
+| Import and export | Import UTF-8 Markdown / TXT from the document list's More menu, with a preview for selection, renaming, and ordering. Export the body using the share icon: Markdown or TXT on Mac, Markdown on iOS. |
 | Local autosave | Edits save about 450 ms after typing pauses, and immediately when the app leaves the foreground. Writes use atomic replacement; a library read failure preserves the original file and displays an error. |
 | Counts and goals | Chinese characters count individually; English text counts by word. More → Document Statistics shows characters and estimated reading time. Choose a per-document goal in settings, or disable it. |
 | Writing preferences | Choose Songti, the system font, or a monospaced font; adjust font size from 14 to 26 and line spacing; use system, light, or dark appearance. |
 | Focus mode | Hide navigation columns while keeping the document and save status visible. Focus mode can be combined with Markdown preview. |
+
+### Apple 1.1.0: more local writing tools
+
+Mac, iPhone, and iPad now add custom notebooks, tags, read-only documents, up to 40 revisions, SHA-256 verified library backups, and the latest 10 local automatic backups. This update also includes selective find and replace, outline navigation, formatting previews, two-document editing, scratch notes, daily word counts, configurable typing shortcuts, and five palettes with ruled paper.
+
+Use the sidebar for Backup & Recovery, Daily Writing, and Scratch Notes; open the editor's More menu for document tools. Wide windows show two editors side by side, while phones and smaller windows use a switcher. See the [Apple feature and validation record](Docs/Apple-feature-parity.md) for details and remaining Android gaps.
+
+Apple v1 libraries migrate to v2 on save; Apple 1.0 cannot read the upgraded format. Full Apple backups can be exchanged between Apple devices. Android backups use a different format; exchange Markdown / TXT across platforms.
 
 ### Start writing
 
@@ -135,7 +155,7 @@ xcodebuild -project Jianzuo.xcodeproj -scheme Jianzuo \
   -derivedDataPath Build/iOS CODE_SIGNING_ALLOWED=NO build
 ```
 
-The six existing unit tests cover mixed-language counting, Unicode persistence round trips, search and favorites, trash restoration and deletion, corrupt-file protection, and incomplete Markdown code fences. For v1.0.0, all six passed on both Mac and the iOS simulator.
+All 15 Mac unit tests pass, covering counts, storage and corrupt-file protection, v1 migration, verified backups, history, notebooks and tags, selective Unicode replacement, outlines, and import previews. The iOS Simulator build succeeds; no usable simulator runtime is installed on this machine, so mobile runtime checks remain pending. See the [Apple validation record](Docs/Apple-feature-parity.md).
 
 ### Package a release
 
@@ -160,10 +180,64 @@ Output: `Build/Releases/v1.0.0`. `SHA256SUMS.txt` covers Mac and simulator packa
 | `Docs/Screenshots` | Actual UI screenshots used by the READMEs |
 | `Docs/Releases` | Release notes |
 
-`Scripts/create_project.py` regenerates the Xcode project and color assets. `Scripts/make_icon.swift` contains the native drawing code for the app icon.
+`Scripts/create_project.py` regenerates the Xcode project and color assets. The editable Sketch icon source is `Design/AppIcon/Jianzuo-Icon-Design.sketch`; `Scripts/make_icon.swift` generates app icon assets from its exported masters.
 
 ## Contributing and license
 
 Report bugs and suggest improvements through [Issues](https://github.com/mrlingan/jianzuo/issues), or submit a pull request. See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines in Chinese.
 
 Licensed under the [MIT License](LICENSE).
+
+### Android 1.1.0 writing extensions
+
+The Android app now adds document history, verified full-library backups, custom notebooks, chapter groups and tags, find and replace, formatting previews, outlines, a second editor, scratch notes, daily statistics, typing shortcuts, and PDF / PNG / HTML / ZIP export. See the [APK feature comparison](Docs/PureWriter-analysis.md) for implemented behavior and remaining differences. Cloud sync remains unavailable; Android 1.12.0 adds DeepSeek AI continuation.
+
+### Android 1.2.0 local features
+
+Adds revision diffs, selective replacement, multi-file import with editable titles and order, paragraph movement, daily goals and yearly summaries, notebook home-screen shortcuts, and DOCX / EPUB export with rich clipboard copy. HTML now renders the supported Markdown subset. Cloud sync remains unavailable; DeepSeek continuation is available in 1.12.0; see the [feature comparison](Docs/PureWriter-analysis.md).
+
+### Android 1.3.0 organization
+
+Independent volumes (including empty ones), collapsible chapter directories, exact tag filters, chapter dragging, and previewed batch numbering are available. Whole volumes can be moved, trashed, restored, or dissolved while keeping their text. Book exports follow volume and chapter order. Library schema 3 migrates earlier libraries; older app versions cannot read the upgraded format.
+
+### Android 1.4.0 dual drafts
+
+Two live native editors now support independent previews, document selection, saved positions, adjustable space allocation, and optional relative linked scrolling. Wide windows place drafts side by side; narrow windows stack them. Both use autosave, history, and daily word metrics. Chapters can be inserted before or after an existing chapter, and dragging near the directory edges scrolls to hidden destinations.
+
+### Android 1.5.0 editor preferences
+
+The shortcut toolbar supports one to three independently scrolling rows, visibility controls, drag or menu ordering, and multiline custom text. Changes are saved after review; resetting the layout preserves custom entries. Tap the status count to choose mixed words, Unicode characters with or without whitespace, or Han characters. Editable body selections show selection and document totals, including the active draft in the dual editor. Writing goals, directory totals and daily statistics continue to use mixed words. These preferences stay on the device; library format 3 is unchanged.
+
+### Android 1.6.0 writing time
+
+Title and body edits start a shared writing timer for both panes. It stops after 60 seconds without edits or when the app pauses, loses window focus, or rebuilds the editor. Daily and annual reviews include elapsed writing time, with monthly totals. Time recording can be disabled while keeping existing records. Backup recovery optionally restores statistics using the maximum for each date, avoiding repeated additions. Library schema 4 reads schemas 1–3; upgraded libraries and backups require Android 1.6.0 or later.
+
+### Android 1.7.0 folder and system imports
+
+The system folder picker scans UTF-8 Markdown/TXT recursively and groups the first directory level into notebooks. Text and files shared or opened from other apps use the same editable import preview. Rotation preserves reviewed titles, ordering, and selections. Large exports use private temporary snapshots instead of placing manuscript bodies in saved UI state. See the [Android audit](Docs/Android-unfinished-audit.md) for remaining features and limits.
+
+### Android 1.8.0 scan controls and content recovery
+
+Folder scans now show progress, support cancellation across rotation, and sort numeric filename runs naturally. Backup & Recovery can search titles and bodies across live documents, trash, revision history, and the latest 24 local snapshots. Preview a matching version and save it as a new editable document while preserving its source. See the [Android guide](Android/README.md) for search limits and lifecycle behavior.
+
+### Android 1.9.0 formatted PDF and PNG exports
+
+PDF and long-image exports now offer Markdown formatting or literal source layout. Native typesetting supports headings, inline styles, links with URLs, lists, tasks, quotes, code, dividers, and basic tables, including repeated table headers across PDF pages. Rendering finishes in private storage before opening the destination, so layout failures and size limits preserve existing files. Images, math, raw HTML, and tables wider than eight columns remain text; external resources are not loaded.
+
+### Android 1.10.0 themes and ruled paper
+
+Writing Settings now includes five built-in color palettes with light and dark variants, plus plain or ruled paper and a live preview before saving. Rules follow native text lines in single and dual editors and plain read-only views. Preferences stay on this device; documents, backups, and export styles remain unchanged. Custom colors, background images, and theme file import are not included.
+
+
+### Android 1.11.0 interface languages
+
+Writing settings → Interface language offers Follow system, 简体中文, and English. Tap Done to apply; Cancel keeps the current choice. Android 13+ shares the choice with the system per-app language setting; Android 8–12 stores a local override. Chinese system languages use Simplified Chinese; other unsupported languages fall back to English.
+
+Menus, settings, statistics, dual editors, import previews, recovery, and built-in shortcut labels use paired resources. Switching languages preserves document text, notebook names, history, and custom shortcut labels. Included sample documents remain in their original language. Additional languages and the Apple interface translation remain unfinished. See the [Android validation record](Docs/Android-validation.md).
+
+
+### Android 1.12.0 DeepSeek AI continuation
+
+Enter your own API Key in **Writing settings → DeepSeek AI settings**, test the connection, and save. Open **Document menu → Writing tools → AI continuation** to generate an editable preview and insert it at the cursor. Includes an optional direction, three length choices, cancellation, regeneration, copying, and an original-text history checkpoint. Changed or unavailable documents cannot be overwritten by stale results. Both interface languages are supported.
+
+The Key is encrypted locally with Android Keystore and excluded from manuscript backups and the APK. Requests go directly to DeepSeek and are charged to the user's account. Chinese and English requests were verified using an ephemeral user-supplied Key, including requests from Android. See the [Android guide](Android/README.md) for context limits and the [validation record](Docs/Android-validation.md) for actual results. Proofreading, chat, real-time suggestions, Apple AI, and cloud sync remain outside this release.

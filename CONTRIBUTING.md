@@ -8,7 +8,7 @@
 2. 用 Xcode 打开 `Jianzuo.xcodeproj`，选择 `Jianzuo` Scheme。
 3. 创建自己的开发分支，保持每次改动的范围清晰。
 
-最低系统版本为 macOS 14 和 iOS / iPadOS 17。当前工程无第三方依赖。
+最低系统版本为 macOS 14、iOS / iPadOS 17 和 Android 8.0。应用运行无第三方依赖。安卓开发用 Android Studio 打开 `Android` 目录；提交安卓改动前运行 `bash Scripts/build_android.sh`，涉及布局、编辑或生命周期时同时运行 `connectedDebugAndroidTest`，并检查手机和平板尺寸。
 
 ## 提交改动
 

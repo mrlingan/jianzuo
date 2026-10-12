@@ -4,6 +4,7 @@ import SwiftUI
 struct JianzuoApp: App {
     @StateObject private var library = LibraryStore()
     @AppStorage("appearance") private var appearance = "system"
+    @AppStorage("editorTheme") private var editorTheme = "classic"
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {

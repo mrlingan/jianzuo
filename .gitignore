@@ -1,5 +1,6 @@
 .DS_Store
 Build/
+output/
 *.xcuserstate
 xcuserdata/
 *.xcresult

@@ -1,0 +1,12 @@
+.gradle/
+.idea/
+.kotlin/
+local.properties
+**/build/
+app/release/
+*.iml
+*.jks
+*.keystore
+
+# Android Studio generates this from the local Gradle JDK selection.
+gradle/gradle-daemon-jvm.properties

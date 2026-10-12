@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024"><defs>
+ <linearGradient id="tile" x1=".15" y1="0" x2=".85" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#CE7A5D"/><stop offset=".55" stop-color="#B65D46"/><stop offset="1" stop-color="#A54938"/></linearGradient>
+ <linearGradient id="paper" x1="0" y1="0" x2=".85" y2="1"><stop stop-color="#FFFDF5"/><stop offset="1" stop-color="#F3E8D7"/></linearGradient>
+ <linearGradient id="ink" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#3A514B"/><stop offset="1" stop-color="#243B36"/></linearGradient>
+ </defs><g id="AppIcon-iOS"><rect id="Terracotta-tile" width="1024" height="1024" fill="url(#tile)"/><g id="Manuscript">
+ <path id="Paper-shadow" d="M326 240H592L754 402V766Q754 824 696 824H326Q270 824 270 768V296Q270 240 326 240Z" fill="#672C24" opacity=".16"/>
+ <path id="Warm-paper" d="M326 216H588L754 382V748Q754 806 696 806H326Q270 806 270 750V272Q270 216 326 216Z" fill="url(#paper)"/>
+ <path id="Fold-shadow" d="M588 216L754 382H634Q588 382 588 336Z" fill="#C08F72" opacity=".12" transform="translate(0 8)"/>
+ <path id="Folded-corner" d="M588 216L754 382H634Q588 382 588 336Z" fill="#E8CFB4"/>
+ <rect id="First-line" x="344" y="334" width="176" height="20" rx="10" fill="#B8ADA0"/>
+ <rect id="Second-line" x="344" y="396" width="126" height="20" rx="10" fill="#CFC4B5"/>
+ <path id="Nib-shadow" d="M416 726L480 500Q485 482 502 474L652 402Q666 396 676 406L738 468Q748 478 742 492L670 642Q662 660 644 666Z" fill="#AA7964" opacity=".16"/>
+ <path id="Ink-nib" d="M416 714L480 488Q485 470 502 462L652 390Q666 384 676 394L738 456Q748 466 742 480L670 630Q662 648 644 654Z" fill="url(#ink)"/>
+ <path id="Nib-edge" d="M502 479L654 406" fill="none" stroke="#59706A" stroke-width="8" stroke-linecap="round" opacity=".7"/>
+ <path id="Nib-slit" d="M416 714L579 551" fill="none" stroke="#FAF4E8" stroke-width="12"/>
+ <circle id="Breather-hole" cx="586" cy="544" r="25" fill="#FAF4E8"/>
+ </g></g></svg>

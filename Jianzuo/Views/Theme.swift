@@ -1,12 +1,13 @@
 import SwiftUI
 
 enum PaperTheme {
-    static let accent = Color("AccentColor")
+    static var accent: Color { WritingPalette.adaptive(3) }
+    static var accentForeground: Color { WritingPalette.adaptive(4) }
     static let green = Color(red: 0.36, green: 0.43, blue: 0.34)
-    static let background = Color("Paper")
-    static let sidebar = Color("Sidebar")
-    static let card = Color("Card")
-    static let ink = Color.primary
+    static var background: Color { WritingPalette.adaptive(0) }
+    static var sidebar: Color { WritingPalette.adaptive(1) }
+    static var card: Color { WritingPalette.adaptive(0) }
+    static var ink: Color { WritingPalette.adaptive(2) }
     static let muted = Color.secondary
     #if os(macOS)
     static let navigationSize = 12.0

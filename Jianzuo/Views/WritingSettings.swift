@@ -7,6 +7,13 @@ struct WritingSettings: View {
     @AppStorage("wordGoal") private var wordGoal = 800
     @AppStorage("appearance") private var appearance = "system"
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) private var colorScheme
+    @AppStorage("editorTheme") private var editorTheme = "classic"
+    @AppStorage("ruledPaper") private var ruledPaper = false
+    @State private var draftTheme = WritingPalette.classic
+    @State private var draftRuled = false
+    @State private var draftAppearance = "system"
+    @State private var showShortcuts = false
 
     var body: some View {
         NavigationStack {
@@ -37,13 +44,35 @@ struct WritingSettings: View {
                         Text("1,500 字").tag(1500)
                         Text("3,000 字").tag(3000)
                     }
-                    Picker("外观", selection: $appearance) {
+                    Picker("外观", selection: $draftAppearance) {
                         Text("跟随系统").tag("system")
                         Text("浅色").tag("light")
                         Text("深色").tag("dark")
                     }
                 }
+                Section("纸张与配色") {
+                    Picker("配色", selection: $draftTheme) {
+                        ForEach(WritingPalette.allCases) { Text($0.title).tag($0) }
+                    }
+                    Toggle("横线稿纸", isOn: $draftRuled)
+                    let dark = draftAppearance == "dark" || (draftAppearance == "system" && colorScheme == .dark)
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("把日子写成诗").font(.title3.weight(.semibold)).foregroundStyle(draftTheme.color(3, dark: dark))
+                        ForEach(["清晨的光落在窗边。", "写下第一句，让故事慢慢发生。"], id: \.self) { line in
+                            Text(line).font(.system(size: fontSize, design: editorFont == "serif" ? .serif : editorFont == "mono" ? .monospaced : .default))
+                                .padding(.bottom, 5).frame(maxWidth: .infinity, alignment: .leading)
+                                .overlay(alignment: .bottom) { if draftRuled { Rectangle().fill(draftTheme.color(2, dark: dark).opacity(0.12)).frame(height: 0.5) } }
+                        }
+                    }.foregroundStyle(draftTheme.color(2, dark: dark)).padding(18)
+                        .background(draftTheme.color(0, dark: dark), in: RoundedRectangle(cornerRadius: 10))
+                    Text("配色、稿纸和外观将在点击「完成」后保存。稿纸只影响编辑显示，正文和导出内容保持原样。")
+                        .font(.footnote).foregroundStyle(.secondary)
+                }
+                Section("快捷输入") {
+                    Button("配置快捷输入栏…") { showShortcuts = true }
+                }
                 Section("关于简作") {
+                    Text("版本 \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.1.0")")
                     Text("一个安静的写作空间。支持 Markdown，文稿自动保存到当前设备。")
                     Text("Mac、iPhone 和 iPad 各自保存本地文稿；可通过导入、导出交换文件。")
                         .font(.footnote).foregroundStyle(.secondary)
@@ -56,11 +85,13 @@ struct WritingSettings: View {
             .formStyle(.grouped)
             .navigationTitle("写作设置")
             .toolbar {
-                ToolbarItem(placement: .confirmationAction) { Button("完成") { dismiss() } }
+                ToolbarItem(placement: .confirmationAction) { Button("完成") { editorTheme = draftTheme.rawValue; ruledPaper = draftRuled; appearance = draftAppearance; dismiss() } }
             }
         }
+        .onAppear { draftTheme = WritingPalette(rawValue: editorTheme) ?? .classic; draftRuled = ruledPaper; draftAppearance = appearance }
+        .sheet(isPresented: $showShortcuts) { ShortcutSettingsView() }
         #if os(macOS)
-        .frame(width: 500, height: 570)
+        .frame(width: 540, height: 700)
         #endif
     }
 }

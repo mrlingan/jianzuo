@@ -5,6 +5,7 @@ struct ContentView: View {
     @EnvironmentObject private var library: LibraryStore
     @State private var showSettings = false
     @State private var columnVisibility: NavigationSplitViewVisibility = .all
+    @AppStorage("editorTheme") private var editorTheme = "classic"
 
     var body: some View {
         Group {
@@ -16,7 +17,7 @@ struct ContentView: View {
                     DocumentListView().frame(width: 288)
                     Divider()
                 }
-                EditorView()
+                EditorWorkspace()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .background(PaperTheme.background)
@@ -29,7 +30,7 @@ struct ContentView: View {
                     .navigationTitle(library.filter.title)
                     .navigationBarTitleDisplayMode(.inline)
             } detail: {
-                EditorView()
+                EditorWorkspace()
                     .navigationTitle("")
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
@@ -45,6 +46,8 @@ struct ContentView: View {
         }
         .animation(.easeInOut(duration: 0.2), value: library.focusMode)
         .sheet(isPresented: $showSettings) { WritingSettings() }
+        .sheet(isPresented: $library.showBackup) { BackupView() }
+        .sheet(isPresented: $library.showImportPreview) { ImportPreviewView() }
         .alert("需要留意", isPresented: Binding(get: { library.errorMessage != nil }, set: { if !$0 { library.errorMessage = nil } })) {
             Button("知道了", role: .cancel) { library.errorMessage = nil }
         } message: { Text(library.errorMessage ?? "") }
@@ -54,7 +57,7 @@ struct ContentView: View {
             case .failure(let error): library.errorMessage = error.localizedDescription
             }
         }
-        .fileExporter(isPresented: $library.showExporter, document: TextExport(text: library.currentDocument?.body ?? ""), contentType: UTType(filenameExtension: "md") ?? .plainText, defaultFilename: (library.currentDocument?.displayTitle ?? "文稿") + ".md") { result in
+        .fileExporter(isPresented: $library.showExporter, document: TextExport(text: library.exportingDocument?.body ?? ""), contentType: UTType(filenameExtension: "md") ?? .plainText, defaultFilename: (library.exportingDocument?.displayTitle ?? "文稿") + ".md") { result in
             if case .failure(let error) = result { library.errorMessage = error.localizedDescription }
         }
         #if os(macOS)
@@ -66,9 +69,18 @@ struct ContentView: View {
 struct LibrarySidebar: View {
     @EnvironmentObject private var library: LibraryStore
     @Binding var showSettings: Bool
+    @State private var sheet: SidebarSheet?
+    @AppStorage("editorTheme") private var editorTheme = "classic"
+
+    private enum SidebarSheet: String, Identifiable {
+        case notebooks, dashboard, scratch
+        var id: String { rawValue }
+    }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(spacing: 0) {
+          ScrollView {
+            VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 10) {
                 Image(systemName: "pencil.and.outline")
                     .font(.system(size: 25, weight: .light))
@@ -92,27 +104,29 @@ struct LibrarySidebar: View {
                     #endif
                 }
                 .padding(.horizontal, 13).padding(.vertical, 12)
-                .foregroundStyle(.white)
+                .foregroundStyle(PaperTheme.accentForeground)
                 .background(PaperTheme.accent, in: RoundedRectangle(cornerRadius: 8))
             }.quietButton().padding(.horizontal, 16).padding(.bottom, 26)
 
             sidebarRow(.all, symbol: "square.stack", title: "全部文稿")
             sidebarRow(.favorites, symbol: "star", title: "我的收藏")
-            Text("我的笔记本").font(.system(size: 10, weight: .medium)).foregroundStyle(.secondary)
-                .padding(.horizontal, 27).padding(.top, 30).padding(.bottom, 10)
-            ForEach(Notebook.allCases) { notebook in
+            HStack {
+                Text("我的笔记本").font(.system(size: 10, weight: .medium)).foregroundStyle(.secondary)
+                Spacer()
+                Button { sheet = .notebooks } label: { Image(systemName: "folder.badge.plus") }.buttonStyle(.plain).accessibilityLabel("管理笔记本")
+            }.padding(.horizontal, 27).padding(.top, 22).padding(.bottom, 10)
+            ForEach(library.notebooks) { notebook in
                 sidebarRow(.notebook(notebook), symbol: notebook.symbol, title: notebook.rawValue)
             }
-            Spacer(minLength: 32)
-            VStack(alignment: .leading, spacing: 10) {
-                Image(systemName: "quote.opening").font(.system(size: 15)).foregroundStyle(PaperTheme.accent.opacity(0.65))
-                Text("把平凡的日常，\n写成自己的故事。")
-                    .font(.system(size: 12, design: .serif)).lineSpacing(5).foregroundStyle(.secondary)
-                Text("每一个字，都是开始。").font(.system(size: 10)).foregroundStyle(.tertiary)
-            }.padding(20).frame(maxWidth: .infinity, alignment: .leading)
-                .background(PaperTheme.card.opacity(0.6), in: RoundedRectangle(cornerRadius: 10))
-                .padding(16)
+            VStack(alignment: .leading, spacing: 14) {
+                Button("速记", systemImage: "square.and.pencil") { sheet = .scratch }
+                Button("每日写作", systemImage: "chart.bar") { sheet = .dashboard }
+                Button("备份与恢复", systemImage: "externaldrive.badge.timemachine") { library.showBackup = true }
+            }.font(.system(size: PaperTheme.navigationSize)).buttonStyle(.plain).padding(.horizontal, 27).padding(.top, 22)
+            Spacer(minLength: 16)
             sidebarRow(.trash, symbol: "trash", title: "废纸篓")
+            }
+          }
             Divider().padding(.horizontal, 22).padding(.vertical, 14)
             HStack {
                 Image(systemName: "internaldrive").font(.system(size: 11))
@@ -124,6 +138,13 @@ struct LibrarySidebar: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(PaperTheme.sidebar)
+        .sheet(item: $sheet) { sheet in
+            switch sheet {
+            case .notebooks: NotebookManagerView()
+            case .dashboard: WritingDashboard()
+            case .scratch: ScratchpadView()
+            }
+        }
     }
 
     private func sidebarRow(_ filter: LibraryFilter, symbol: String, title: String) -> some View {
@@ -144,6 +165,7 @@ struct LibrarySidebar: View {
 
 struct DocumentListView: View {
     @EnvironmentObject private var library: LibraryStore
+    @AppStorage("editorTheme") private var editorTheme = "classic"
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -168,6 +190,15 @@ struct DocumentListView: View {
                 }
             }.padding(11).background(PaperTheme.sidebar.opacity(0.7), in: RoundedRectangle(cornerRadius: 7))
                 .padding(.horizontal, 20).padding(.bottom, 20)
+            if !library.allTags.isEmpty {
+                Menu {
+                    Button("全部标签") { library.tagFilter = "" }
+                    ForEach(library.allTags, id: \.self) { tag in
+                        Button("#" + tag) { library.tagFilter = tag; library.selection = library.visibleDocuments.first?.id }
+                    }
+                } label: { Label(library.tagFilter.isEmpty ? "按标签筛选" : "#" + library.tagFilter, systemImage: "tag") }
+                    .font(.system(size: PaperTheme.bodySmallSize)).padding(.horizontal, 20).padding(.bottom, 14)
+            }
             Divider().padding(.horizontal, 20)
             if library.visibleDocuments.isEmpty {
                 ContentUnavailableView(library.search.isEmpty ? "这里还是空白" : "没有找到文稿", systemImage: library.filter == .trash ? "trash" : "doc.text.magnifyingglass", description: Text(library.search.isEmpty ? "让一个想法，成为第一行文字。" : "试试其他关键词。"))
@@ -208,6 +239,7 @@ struct DocumentListView: View {
         if document.deletedAt == nil {
             Button(document.isFavorite ? "取消收藏" : "收藏文稿", systemImage: "star") { library.toggleFavorite(document.id) }
             Button("创建副本", systemImage: "doc.on.doc") { library.duplicate(document) }
+            Button("在第二编辑器打开", systemImage: "rectangle.split.2x1") { library.secondarySelection = document.id }
             Button("移到废纸篓", systemImage: "trash", role: .destructive) { library.moveToTrash(document.id) }
         } else {
             Button("恢复文稿", systemImage: "arrow.uturn.backward") { library.restore(document.id) }
